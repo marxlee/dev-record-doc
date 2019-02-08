@@ -34,4 +34,4 @@ jdbc:mariadb://localhost:3306/DB?user=root&password=myPassword
 
 ## 更新mariadb-service
 yum install -y mariadb-server
-
+##找不到mysql命令
