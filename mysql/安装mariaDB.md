@@ -21,9 +21,9 @@ $ mysqladmin -u root password "new_password";
 $ mysql -u root -p
 
 ## 添加用户访问权限
-> GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'mypwd' WITH GRANT OPTION;
-> GRANT ALL PRIVILEGES ON *.* TO 'username'@'%' IDENTIFIED BY 'mypwd' WITH GRANT OPTION;
-> flush privileges;
+1. > GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'mypwd' WITH GRANT OPTION;
+2. > GRANT ALL PRIVILEGES ON *.* TO 'username'@'%' IDENTIFIED BY 'mypwd' WITH GRANT OPTION;
+3. > flush privileges;
 
 
 ## jdbs链接
@@ -33,7 +33,7 @@ jdbc:mariadb://localhost:3306/DB?user=root&password=myPassword
 
 
 ## 更新mariadb-service, 找不到mysql命令
-yum install -y mariadb-server
+$ yum install -y mariadb-server
 
 ## 结束后清理yum
-yum clean all
+$ yum clean all
