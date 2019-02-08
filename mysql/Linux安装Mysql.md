@@ -1,13 +1,20 @@
-## 查找mysql/mariadb(类似)
+## 查找mysql/mariadb
 $ rpm -qa | grep mysql
 
-## 删除mysql/mariadb(类似)
+$ rpm -qa | grep mariadb
+
+## 删除mysql/mariadb
 #### 1. 普通删除模式
-$ rpm -e mysql　　
+$ rpm -e mysql
+
+$ rpm -e mariadb
+
 #### 2. 强力删除模式，如果使用上面命令删除时，提示有依赖的其它文件，则用该命令可以对其进行强力删除
 $ rpm -e --nodeps mysql
 
-## 安装mariadb
+$ rpm -e --nodeps mariadb
+
+## 下面安装mariadb
 $ yum install mariadb-server mariadb 
 
 ## 更新mariadb-service, 找不到mysql命令
