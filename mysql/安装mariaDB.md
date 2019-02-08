@@ -1,4 +1,4 @@
-## 查找mysql/mariadb
+## 查找mysql/mariadb(类似)
 $ rpm -qa | grep mysql
 
 
@@ -32,6 +32,8 @@ org.mariadb.jdbc.Driver
 jdbc:mariadb://localhost:3306/DB?user=root&password=myPassword
 
 
-## 更新mariadb-service
+## 更新mariadb-service, 找不到mysql命令
 yum install -y mariadb-server
-##找不到mysql命令
+
+## 结束后清理yum
+yum clean all
