@@ -1,5 +1,5 @@
 
-### git使用
+# github 使用
 
 git init
 
