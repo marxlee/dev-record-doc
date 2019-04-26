@@ -1,6 +1,7 @@
 
 
 # 在简易系统, 安装网络命令
+
 #共享地址: /mnt/hgfs/
 $ yum install net-tools -y 
 
