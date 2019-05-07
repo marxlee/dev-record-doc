@@ -36,7 +36,7 @@ $ systemctl enable mariadb  #设置开机启动
 $ mysqladmin --version
 
 ## 设置新密码
-$ mysqladmin -u root password "new_password";
+$ mysqladmin -u root password "root";
 
 ## 登录mariaDB(可以使用mysql)
 $ mysql -u root -p
