@@ -42,9 +42,11 @@ $ mysqladmin -u root password "root";
 $ mysql -u root -p
 
 ## 添加用户访问权限
+```
 1. > GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'mypwd' WITH GRANT OPTION;
 2. > GRANT ALL PRIVILEGES ON *.* TO 'username'@'%' IDENTIFIED BY 'mypwd' WITH GRANT OPTION;
 3. > flush privileges;
+```
 
 
 ### JDBC驱动
