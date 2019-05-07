@@ -39,12 +39,17 @@ $ mysqladmin --version
 $ mysqladmin -u root password "root";
 
 ## 登录mariaDB(可以使用mysql)
-$ mysql -u root -p
+$ mysql -u root -p root
+
+## 创建新的用户
+```
+insert into mysql.user(Host,User,Password) values('localhost','hadoop',password('hadoop'));
+```
 
 ## 添加用户访问权限
 ```
-1. > GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'mypwd' WITH GRANT OPTION;
-2. > GRANT ALL PRIVILEGES ON *.* TO 'username'@'%' IDENTIFIED BY 'mypwd' WITH GRANT OPTION;
+1. > GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'root' WITH GRANT OPTION;
+2. > GRANT ALL PRIVILEGES ON *.* TO 'hadoop'@'%' IDENTIFIED BY 'hadoop' WITH GRANT OPTION;
 3. > flush privileges;
 ```
 
