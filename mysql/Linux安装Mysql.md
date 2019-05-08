@@ -62,6 +62,7 @@ $ mysql -u root -p root
 > show databases;
 > use mysql;
 > insert into mysql.user(Host,User,Password) values('localhost','hadoop',password('hadoop'));
+> # 需要注意的是, 删除里边host: localhost的数据, 防止你的权限出现问题
 ```
 
 ## 添加用户访问权限
