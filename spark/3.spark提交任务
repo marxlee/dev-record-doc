@@ -1,0 +1,28 @@
+1、通过Jar包提交任务【工作中的主要方式】
+
+1、需要通过bin/spark-submit来提交
+2、【必需】--class 指定你jar包的主类
+3、【必需】--master 指定你访问的集群地址  如果你的jar包中已经配置了master，那么可以不指定master地址。
+4、【必需】你的jar包的具体路径。 jar的参数
+5、通过  bin/spark-submit 可以看到所有的参数：
+
+
+2、如何通过IDEA编写spark应用程序
+    1、创建一个scala文件
+    2、创建一个 sparkConf对象，设置应用的名称，【可选】设置master地址
+    3、通过sparkConf创建 sparkContext【用于连接spark的桥梁】
+    4、编写业务逻辑
+    5、关系sparkContext， sc.stop()
+
+3、如果你使用bin/spark-shell 那么sparkContext默认为 sc
+4、IDEA打包spark应用的时候，不需要讲spark的jar包和scala的jar包打入到jar包中，运行环境中都有。
+5、来开发过程中，可以通过local[*]模式来运行，并调试。
+
+6、所有的提交方式
+
+
+
+7、deploy-mode  client模式和cluster模式
+
+client模式：一般用在测试过程中，Driver运行在client的主机上。一般会等待整个程序的执行完成。
+cluster模式： 一般是生产环境中，Client在提交Jar包之后，退出，不等待整个应用程序的执行，Driver会运行在某一个worker上。
