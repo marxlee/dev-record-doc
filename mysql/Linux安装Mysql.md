@@ -58,8 +58,8 @@ $ mysql -u root -p root
 
 ### JDBC驱动
 org.mariadb.jdbc.Driver
-mysql的驱动同样兼容mariadb
-com.mysql.jdbc.Driver
+
+com.mysql.jdbc.Driver   # mysql的驱动同样兼容mariadb
 
 
 ### Java连接方式
