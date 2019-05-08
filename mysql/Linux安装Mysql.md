@@ -43,9 +43,9 @@ $ mysql -u root -p root
 
 ## 创建新的用户
 ```
-show databases;
-use mysql;
-insert into mysql.user(Host,User,Password) values('localhost','hadoop',password('hadoop'));
+> show databases;
+> use mysql;
+> insert into mysql.user(Host,User,Password) values('localhost','hadoop',password('hadoop'));
 ```
 
 ## 添加用户访问权限
