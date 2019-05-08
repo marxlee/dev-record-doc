@@ -58,6 +58,9 @@ $ mysql -u root -p root
 
 ### JDBC驱动
 org.mariadb.jdbc.Driver
+mysql的驱动同样兼容mariadb
+com.mysql.jdbc.Driver
+
 
 ### Java连接方式
 jdbc:mariadb://localhost:3306/DB?user=root&password=myPassword
