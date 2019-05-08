@@ -5,9 +5,17 @@ $ rpm -qa | grep mariadb
 
 ## 删除mysql/mariadb
 #### 1. 普通删除模式
+```
+$ yum remove mariadb-libs-5.5.56-2.el7.x86_64
+$ yum remove mariadb-server.x86_64.1.5.5.60-1.el7_5
+$ rm -r /etc/my.cnf
+$ rm -rf /var/lib/mysql/
+```
+#### 1.1 普通删除模式
+```
 $ rpm -e mysql
-
 $ rpm -e mariadb
+```
 
 #### 2. 强力删除模式，如果使用上面命令删除时，提示有依赖的其它文件，则用该命令可以对其进行强力删除
 $ rpm -e --nodeps mysql
