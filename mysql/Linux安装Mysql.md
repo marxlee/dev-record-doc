@@ -62,4 +62,13 @@ org.mariadb.jdbc.Driver
 ### Java连接方式
 jdbc:mariadb://localhost:3306/DB?user=root&password=myPassword
 
+### jar
+```
+<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>5.1.38</version>
+</dependency>
+```
 
