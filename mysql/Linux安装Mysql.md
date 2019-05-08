@@ -1,3 +1,4 @@
+
 ## 查找mysql/mariadb
 ```
 $ rpm -qa | grep mysql
@@ -26,6 +27,7 @@ $ rpm -e --nodeps mariadb
 
 ## 下面安装mariadb
 ```
+# 请在root用户下进行安装,否则会出现权限问题 su root
 $ yum install mariadb-server mariadb 
 ```
 
