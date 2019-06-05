@@ -15,4 +15,9 @@ alter table bank_branch_number modify column bankId varchar(10);
 # 添加一个表的字段
 alter table `表名` add `字段` varchar(50) default null comment "注释";
 
+# 修改表名， TO 或AS都可以，也以省略掉
+# ALTER TABLE 表名 RENAME [TO|AS] 新表名
+ALTER TABLE user10 RENAME TO user11;
+
+
 ```
