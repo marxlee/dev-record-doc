@@ -29,19 +29,39 @@ java的安装：
 
 3、Standalone HA配置
 1、修改spark.env.sh 配置文件，注释掉 SPARK.MASTER,HOST
-2、添加
-export SPARK_DAEMON_JAVA_OPTS="
- -Dspark.deploy.recoveryMode=ZOOKEEPER
- -Dspark.deploy.zookeeper.url=zk1,zk2,zk3
- -Dspark.deploy.zookeeper.dir=/spark"
+2、添加配置
+	export SPARK_DAEMON_JAVA_OPTS="
+	 -Dspark.deploy.recoveryMode=ZOOKEEPER	# zookeeper
+	 -Dspark.deploy.zookeeper.url=zk1:2181,zk2:2181,zk3:2181	#zk地址+端口号
+	 -Dspark.deploy.zookeeper.dir=/spark"	# spark-zk-HA目录
 
      3、分发你的配置到所有节点
      4、启动  1、start-all.sh 启动所有节点，   手动选择一个其他节点执行  start-master.sh
      5、启用HA之后，master的访问变成  spark://master01:7077，master02:7077
+ 我的配置
+```
+# HADOOP AND YARN
+HADOOP_CONF_DIR=/opt/module/hadoop-2.7.2/etc/hadoop
+YARN_CONF_DIR=/opt/module/hadoop-2.7.2/etc/hadoop
 
+# 添加历史存放和位置,端口号
+export SPARK_HISTORY_OPTS="-Dspark.history.ui.port=4000 -Dspark.history.retainedApplications=3 -Dspark.history.fs.logDirectory=hdfs://hadoop106:9000/spark/historyDir,hdfs://hadoop107:9000/spark/historyDir,hdfs://hadoop108:9000/spark/historyDir"
+# DAEMON
+export SPARK_DAEMON_JAVA_OPTS="-Dspark.deploy.recoveryMode=ZOOKEEPER -Dspark.deploy.zookeeper.url=hadoop106:2181,hadoop107:2181,hadoop108:2181 -Dspark.deploy.zookeeper.dir=/sparkHA"
+
+#如果是HA模式下, 不需要指定masterid 端口地址
+#SPARK_MASTER_HOST=hadoop106
+SPARK_MASTER_PORT=7077
+```
 
 4、yarn集群的配置
      1、修改yarn的配置，启动yarn
-     2、修改提交应用的client下  conf目录下的spark.env.sh  添加：
+     2、修改提交应用的client下  conf目录下的spark-env.sh  添加：
 HADOOP_CONF_DIR=/home/bigdata/hadoop/hadoop-2.7.3/etc/hadoop
 YARN_CONF_DIR=/home/bigdata/hadoop/hadoop-2.7.3/etc/hadoop
+
+5. 支持hive操作
+将hive配置文件: hive-site.xml -> ../../hive-1.2.2-bin/conf/hive-site.xml 使用软连接的形式加载到spark的conf目录中
+ln -s ../../hive-1.2.2-bin/conf/hive-site.xml
+
+
