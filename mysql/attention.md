@@ -19,5 +19,8 @@ alter table `表名` add `字段` varchar(50) default null comment "注释";
 # ALTER TABLE 表名 RENAME [TO|AS] 新表名
 ALTER TABLE user10 RENAME TO user11;
 
+# linux下执行sql脚本
+mysql>source /opt/news.sql ;
+
 
 ```
