@@ -1,6 +1,6 @@
 # nginx 安装 root 用户权限下进行安装
 
-## 第一种 yum安装
+## 第一种 yum 源安装
 ```
 # 要添加CentOS 7 EPEL仓库，请打开终端并使用以下命令：
 yum install epel-release
@@ -12,6 +12,9 @@ sudo systemctl start nginx
 # 当然, 由此安装的nginx的配
 1. 页面会有所提示: nginx的安装目录: /usr/local/nginx
 2. 页面会提示nginx的配置文件的路径: /etc/nginx/nginx.conf
+# 关闭nginx
+systemctl stop nginx
+
 ```
 
 ### 修改配置文件nginx.conf文件, 添加代理, nginx添加负载均衡为
