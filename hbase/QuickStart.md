@@ -86,4 +86,5 @@ $ bin/stop-hbase.sh
 
 http://hadoop102:16010 
 
+启动机器是hadoop102机器, 其他机器ip没有访问权限
 
