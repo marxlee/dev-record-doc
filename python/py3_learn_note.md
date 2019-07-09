@@ -36,21 +36,21 @@ print("这是一个float类型, 并保留四位: %.04f" % price)
 ```
 
 ### 6. 关键字:  
-  import keyword  # 打印python关键字
-  print(keyword.kwlist)
-  ['False', 'None', 'True', 'and', 'as', 'assert', 'async', 'await', 'break', 'class',  
+  import keyword  # 打印python关键字  
+  print(keyword.kwlist)  
+  'False', 'None', 'True', 'and', 'as', 'assert', 'async', 'await', 'break', 'class',  
   'continue', 'def', 'del', 'elif', 'else', 'except', 'finally', 'for', 'from',  
   'global', 'if', 'import', 'in', 'is', 'lambda', 'nonlocal', 'not', 'or', 'pass',  
-  'raise', 'return', 'try', 'while', 'with', 'yield']  
-  
-  
+  'raise', 'return', 'try', 'while', 'with', 'yield'  
+     
 变量名命名:   
-  见名之意, 区分大小写, 使用小写, 单词与单词链接使用 _  例如: last_name  
-  = 号前后加一个空格  
+  见名之意, 区分大小写, 使用小写, 单词与单词链接使用 "_"    
   
+  例如: last_name = 号前后加一个空格  
+    
 ### 7. if判断语句:  
-```
 
+```
 """
 以下判断条件:
 ==
@@ -288,20 +288,7 @@ for in 遍历
 for i in name_list:
     print(i)
     
-
 ```   
-    
-    
-
-    
 
 
-
-
-
-
-
-
-
-    
 
