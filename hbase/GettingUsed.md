@@ -65,7 +65,17 @@ hbase(main):020:0> drop 'student'
 hbase(main):022:0> alter 'student',{NAME=>'info',VERSIONS=>3}
 hbase(main):022:0> get 'student','1001',{COLUMN=>'info:name',VERSIONS=>3}
 
+12 命名空间的使用
+默认情况下, 在创建表的时候, 是不需要加命名空间的, 默认情况下使用的是 default命名空间, 也就是RegionServer Group 
+hbase(main):022:0>create_namespace 'group_product'
+hbase(main):022:0>list_namespace
+hbase(main):022:0>create 'group_product:pro', 'cf1'
 
+# 删除命名空间: 必须删除 disable, drop 命名空间下所有的表
+hbase(main):022:0>disable 'group_product:pro'
+hbase(main):022:0>drop 'group_product:pro'
+hbase(main):022:0>drop_namespace 'group_product' 
+hbase(main):022:0>
 
 ```
 
