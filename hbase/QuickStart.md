@@ -62,9 +62,19 @@ $ scp -r hbase/ hadoop@hadoop104:$PWD
 $ bin/hbase-daemon.sh start master
 $ bin/hbase-daemon.sh start regionserver
 
-**** 提示：如果集群之间的节点时间不同步，会导致regionserver无法启动，抛出ClockOutOfSyncException异常。
-修复提示：
+# 设置一个错误的时间, 观察启动状况
+$ sudo data -s "2017-07-07 20:20:00"
 
+$ cat logs/hbase-.....log
+# 观察会出现, ClockoutofSyncException:......
+
+# 因此需要同步时间
+
+
+
+** 提示：如果集群之间的节点时间不同步，会导致regionserver无法启动，抛出ClockOutOfSyncException异常。
+
+修复提示：
 a、同步时间服务
 添加时间同步操作
 b、属性：hbase.master.maxclockskew设置更大的值
