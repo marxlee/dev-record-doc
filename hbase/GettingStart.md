@@ -46,6 +46,8 @@ hbase(main):021:0> count 'student'
 hbase(main):016:0> deleteall 'student','1001'
 删除某rowkey的某一列数据：
 hbase(main):017:0> delete 'student','1002','info:sex'
+删除时间戳的数据: 删除规则: 删除时间戳之前的所有版本号数据, 保留这个时间戳后边的数据
+hbase(main):017:0> delete 'student','1002','info:sex', 1503343423402
 
 9．清空表数据
 hbase(main):018:0> truncate 'student'
@@ -62,6 +64,8 @@ hbase(main):020:0> drop 'student'
 将info列族中的数据存放3个版本：
 hbase(main):022:0> alter 'student',{NAME=>'info',VERSIONS=>3}
 hbase(main):022:0> get 'student','1001',{COLUMN=>'info:name',VERSIONS=>3}
+
+
 
 ```
 
