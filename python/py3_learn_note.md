@@ -650,7 +650,298 @@ name = "10"
    * 执行代码  
    
    
-### 24. 
+### 24. 函数参数, 返回值
+1. 返回值: return 
+2. 返回多个数据(利用元祖): return (.., ..)
+
+```
+"""
+含有多个返回值的方法用例: 
+
+"""
+def measure():
+    temp1 = 10
+    temp2 = 20
+    print("打印变量: ", temp1, temp2)
+    # 有多个返回值, 并且以元祖的形式返回, 小括号可以省略
+    # return (temp1, temp2)
+    return temp1, temp2 # tuple 元祖类型
+
+
+mea = measure()
+print(mea)
+
+# 使用元祖的下标拿到元祖的值
+print(mea[0])
+print(mea[1])
+
+# 已知返回类型是元祖的情况下, 使用不同的全局变量接受参数回执 , 切记接受返回值时, 返回值的个数, 和接受个数是一致的
+gl_temp1, gl_temp2 = measure()
+print(gl_temp1)
+print(gl_temp2)
+
+
+```
+
+
+
+
+
+### 25. 交换两个变量的值
+```
+# 不用其他参数的情况下
+a = b + a
+b = a-b
+a = a-b
+
+# 使用元祖, python专有, 原理是一样的, 类似方法的调用, 元祖当返回值时, 是可以省略小括号的
+a, b = (b, a)
+a, b = b, a
+
+
+```
+
+
+### 26. 参数赋值
+
+#### 26.1 在函数内部针对参数赋值不会影响外部实参
+```
+"""
+查看参数结果以及赋值
+
+console: 
+打印参数值:  100 列表:  [3, 4, 5]
+99
+[1, 2]
+"""
+def demo1(num, num_list):
+    """
+    在函数调用全局变量是, 
+    内部为变量赋值的过程, 实质是创建局部变量的过程, 
+    外部的全局变量并不会因为内部修改而改表, 
+    """
+    # 赋值语句
+    num = 100
+    num_list = [3, 4, 5]
+    print("打印参数值: ", num, "列表: ", num_list)
+
+gl_num = 99
+gl_num_list = [1, 2]
+
+demo1(gl_num, gl_num_list)
+print(gl_num)
+print(gl_num_list)
+
+```
+
+#### 26.2 在函数内部使用方法修改可变参数会影响外部实参
+1. 在调用赋值语句时不会影响外部数据, 但是如果调用对象方法, 会导致参数改变, 并且可能导致全局变量的改变, 慎重, 一般情况下, 需要在函数内部, 创建一个新的局部参数  
+```
+def demo1(num, num_list):
+    """
+    调用方法后, 调用了列表的方法, 对列表进行修改
+    """
+    num_list.append(8)
+    print("打印参数值: ", num, "列表: ", num_list)
+
+gl_num = 99
+gl_num_list = [1, 2]
+
+demo1(gl_num, gl_num_list)
+print(gl_num)
+print(gl_num_list)
+```
+
+
+#### 26.3 列表使用+=本质上是调用extend方法
+
+
+```
+
+def demo1(num, num_list):
+    """
+    数字类型 += 属于赋值操作, 不会对外部函数修改
+    列表调用 += 的过程, 本质相当于 extend 拼接过程, 都会列表做了修改 
+    """
+    num += num
+    num_list.append(8)
+    num_list += [3, 4]
+    num_list.extend([9, 10])
+    print("列表: ", num_list)
+    print("num: ", num)
+
+gl_num = 99
+gl_num_list = [1, 2]
+
+demo1(gl_num, gl_num_list)
+print("gl_num_list 结果: ", gl_num_list)
+
+
+```
+
+
+#### 26.4 回顾列表的排序方法明确缺省参数的概念及作用
+1. 缺省参数, 定义函数是, 需要对某一个参数指定一个默认的参数值, 具有默认值得参数叫做缺省参数  
+2. 将常见的参数设置默认值, 会简化函数的调用, 减少参数, 函数调用更简便  
+
+
+```
+
+"""
+用例: 
+"""
+gl_num_list = [1, 2, 5, 4, 7]
+# gl_num_list.sort()
+# 对于sort函数而言, reverse是非必要传递的参数, 默认不传值得情况下是升序
+gl_num_list.sort(reverse=True)
+print(gl_num_list)
+
+```
+#### 26.5 指定函数缺省参数的默认值
+1. 缺省参数, 要放置在参数列表的末尾  
+2. 在调用缺省参数的时候,往往这个参数可能放在几个参数之后, 所以调用过程中, 需要指定参数名并赋值, 这样方可调用这个缺省参数, adult=False    
+
+
+```
+"""
+设置缺省参数的设计和指定位置
+"""
+name = "Marx"
+def demo2(name, adult=True):
+    print("name=", name, "成年=", adult)
+
+demo2(name)
+demo2(name, adult=False)
+
+# addr 的位置是错误的, 程序会报错pycharm会提示报错
+def demo2(name, age=18, adult=True, addr):
+    print("name=", name, "age=", age, "adult=", adult)
+
+```
+
+#### 26.6 缺省参数的注意事项
+
+1. 缺省参数, 要放置在参数列表的末尾  
+2. 在调用缺省参数的时候,往往这个参数可能放在几个参数之后, 所以调用过程中, 需要指定参数名并赋值, 这样方可调用这个缺省参数, adult=False    
+3. 
+
+#### 26.7 定义及作用
+1. 多值参数: 有时一个函数能够处理的参数个数是不确定, 这个时候, 需要多值参数
+2. python中定义了两中: 
+  * 参数名前使用一个 \* 号 可以接受元祖  
+  * 参数名前使用两个 \*\* 号 可以接受字典  
+  * 所有的参数使用 , 号隔开
+  
+```
+
+def demo3(num, *args, **kwargs):
+    print("num=", num)
+    print("args=", args)
+    print("kwargs=", kwargs)
+
+demo3(10, 20,34,56, name="Marx", age=10)
+
+"""
+print: 
+num= 10
+args= (20, 34, 56)
+kwargs= {'name': 'Marx', 'age': 10}
+"""
+```
+
+
+#### 26.8 数字累加案例演练
+
+```
+def sum_nums(*args):
+    num = 0
+    for i in args:
+        num += i
+    return num
+
+print(sum_nums(1,2,3,4,5))
+
+
+"""
+设置不带可变参数的变量调用, 在执行是会报
+TypeError:  sum_nums1() takes 1 positional argument but 5 were given
+
+可以修改: sum_nums1((1,2,3,4,5))
+"""
+def sum_nums1(args):
+    num = 0
+    for i in args:
+        num += i
+    return num
+sums=sum_nums1(1,2,3,4,5)
+print(sums)
+```
+
+#### 26.9 元组和字典的拆包
+1. 当可变参数接受的参数过多的时候, 会使程序函数调用过于冗长, 因此, 我们需要更简单的方式接受参数  
+2. 定义元祖, 作为参数传递给 \*args  
+3. 定义字典, 作为参数传递给 \*\*kwargs  
+4. 但是不能以普通的形式将定义的元祖, 和字段作为参数, 需要将其做处理, 才能使得程序在接受参数的时候以正确的方式对应到正确的参数上  
+5. 元祖接受: \*元祖参数  
+6. 字典接受: \*\*字典参数  
+
+```
+"""
+用例: 
+"""
+def demo(*args, **kwargs):
+    print("args", args)
+    print("kwargs:", kwargs)
+
+gl_num = (1,2,3,4)
+gl_kw = {"name":"Marx", "age":10}
+
+# 普通调用
+demo(1,2,3, name="Marx", age=10)
+# 如果直接传递参数, 会导致gl_num, gl_kw 同时传递给*args变量中
+demo(gl_num, gl_kw)
+# 拆包语法: 因此需要拆包, 在对应的元祖变量前加 *, 和字典变量前加 ** 
+demo(*gl_num, **gl_kw)
+
+```
+
+
+### 27. 递归
+
+1. 函数自己调用自己的方式  
+2. 在编写递归调用的时候, 需要一个结束条件, 否则导致程序死循环
+
+```
+def demo(num):
+    print(num)
+    if num < 1:
+        return  # 结束条件, 不在执行函数
+    demo(num - 1)
+
+demo(10)
+
+
+
+# 递归实现数字累加
+def demo2(num):
+    """递归大于5, 跳出递归"""
+    if num >= 5:
+        return num
+
+    temp = demo2(num + 1)
+    return num + temp
+
+print(demo2(6))
+
+# 数字累加的执行流程
+
+
+
+
+```
+
+
+
 
 
 
