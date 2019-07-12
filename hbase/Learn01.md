@@ -2,7 +2,7 @@
 # HBase 学习笔记
 
 ## 一. 架构图
-![Hbase架构](https://github.com/marxlee/Development-doc/tree/master/hbase/img/Hbase-架构1.jpg)
+![Hbase架构](https://github.com/marxlee/Development-doc/blob/master/hbase/img/Hbase-架构1.jpg)
 
 从图中可以看出Hbase是由Client、Zookeeper、Master、HRegionServer、HDFS等几个组件组成，下面来介绍一下几个组件的相关功能：
 ### 1）Client
@@ -69,7 +69,7 @@ HFile存储在Store中，一个Store对应HBase表中的一个列族。
 
 ## HBase数据结构
 ### 1 RowKey
-与nosql数据库们一样,RowKey是用来检索记录的主键。访问HBASE table中的行，只有三种方式：
+与nosql数据库们一样,RowKey是用来检索记录的主键。访问HBASE table中的行，只有三种方式：(20-100个字符)
 * 1.通过单个RowKey访问
 * 2.通过RowKey的range（正则）
 * 3.全表扫描
@@ -90,7 +90,7 @@ HBASE 中通过rowkey和columns确定的为一个存贮单元称为cell。
 
 ### 5 命名空间
 结构
-![命名空间](https://github.com/marxlee/Development-doc/tree/master/hbase/img/Hbase命名空间.jpg)
+![命名空间](https://github.com/marxlee/Development-doc/blob/master/hbase/img/Hbase命名空间.jpg)
 
 * 1) Table：表，所有的表都是命名空间的成员，即表必属于某个命名空间，如果没有指定，则在default默认的命名空间中。
 * 2) RegionServer group：一个命名空间包含了默认的RegionServer Group。
