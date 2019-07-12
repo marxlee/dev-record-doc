@@ -102,6 +102,9 @@ HBASE 中通过rowkey和columns确定的为一个存贮单元称为cell。
 ### 1. 读流程
 ![流程图](https://github.com/marxlee/Development-doc/blob/master/hbase/img/Hbase-读流程.jpg)
 
+
+![流程图](https://github.com/marxlee/Development-doc/blob/master/hbase/img/Hbase-读数据微观流程.png)
+
 *  Client先访问zookeeper，从meta表读取region的位置，然后读取meta表中的数据。meta中又存储了用户表的region信息；
 *  根据namespace、表名和rowkey在meta表中找到对应的region信息；
 *  找到这个region对应的regionserver；
