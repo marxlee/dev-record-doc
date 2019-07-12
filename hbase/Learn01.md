@@ -92,10 +92,10 @@ HBASE 中通过rowkey和columns确定的为一个存贮单元称为cell。
 结构
 ![命名空间](https://github.com/marxlee/Development-doc/blob/master/hbase/img/Hbase命名空间.jpg)
 
-* 1) Table：表，所有的表都是命名空间的成员，即表必属于某个命名空间，如果没有指定，则在default默认的命名空间中。
-* 2) RegionServer group：一个命名空间包含了默认的RegionServer Group。
-* 3) Permission：权限，命名空间能够让我们来定义访问控制列表ACL（Access Control List）。例如，创建表，读取表，删除，更新等等操作。
-* 4) Quota：限额，可以强制一个命名空间可包含的region的数量。
+*  Table：表，所有的表都是命名空间的成员，即表必属于某个命名空间，如果没有指定，则在default默认的命名空间中。
+*  RegionServer group：一个命名空间包含了默认的RegionServer Group。
+*  Permission：权限，命名空间能够让我们来定义访问控制列表ACL（Access Control List）。例如，创建表，读取表，删除，更新等等操作。
+*  Quota：限额，可以强制一个命名空间可包含的region的数量。
 
 
 
