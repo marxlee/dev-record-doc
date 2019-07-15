@@ -26,6 +26,8 @@ hbase(main):007:0> put 'student','1002','info:age','20'
 hbase(main):008:0> scan 'student'
 hbase(main):009:0> scan 'student',{STARTROW => '1001', STOPROW  => '1001'}
 hbase(main):010:0> scan 'student',{STARTROW => '1001'}
+3.1 多版本号返回数据
+hbase(main):009:0> scan 'student',{STARTROW => '1001', STOPROW  => '1001', VERSIONS=>3}
 
 4．查看表结构
 hbase(main):011:0> describe ‘student’
