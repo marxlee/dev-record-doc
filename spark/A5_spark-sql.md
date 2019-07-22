@@ -60,7 +60,7 @@ DataSet是强类型
 
 
 3. sql 操作
-
+相互转化: 
 
 
 4. sql-udf
