@@ -37,3 +37,41 @@ set   f的特殊形式
   
   DF = DS[row]
 ```
+
+1. sql 是什么
+spark 管理结构化的模块
+
+2. 关键抽象是什么
+RDD(1.0) DataFrame(1.3) DataSet(1.6)
+rdd 行处理
+
+dataFrame 列信息处理, 
+
+dataset 列式处理, 列加了类型处理
+
+DataFrame api的扩展
+spark最新的数据抽象
+具有类型安全检查
+具有dataFrame插询优化特性
+DataSet支持编解码器
+样例类的使用
+DataFrame=DataSet[row]
+DataSet是强类型
+
+
+3. sql 操作
+
+
+
+4. sql-udf
+
+5. sql数据源
+
+6. 实战
+
+
+
+
+
+
+
