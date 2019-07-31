@@ -66,11 +66,11 @@ $ bin/kafka-topics.sh --zookeeper hadoop106:2181 --create --replication-factor 3
 ```
 二. 查看topic列表
 ```
-$ bin/kafka-topic.sh --zookeeper hadoop106 --list
+$ bin/kafka-topics.sh --zookeeper hadoop106 --list
 ```
 三. 删除topic
 ```
-$ bin/kafka-topic.sh --zookeeper hadoop106 --delete --topic topic_name
+$ bin/kafka-topics.sh --zookeeper hadoop106 --delete --topic topic_name
 ```
 四. 生产者producer (注意: 端口号9092是producer端口号)
 ```
