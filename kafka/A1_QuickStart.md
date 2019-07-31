@@ -53,10 +53,10 @@ $ bin/kafka-server-start.sh -daemon config/server.properties
 ```
 $ bin/kafka-server-stop.sh 
 ```
-演示功能: (这里使用机器号hadoop106做演示, 当然集群下使用其他的机器一样的效果)
+演示功能: (这里使用机器号hadoop106做演示, 当然集群下使用其他的机器一样的效果)  
 一. 创建topic
 ```
-$ bin/kafka-topic.sh --zookeeper hadoop106:2181 --create --replication-factor 3 --partitions 3 --topic topic_name
+$ bin/kafka-topics.sh --zookeeper hadoop106:2181 --create --replication-factor 3 --partitions 3 --topic topic_name
 
 1.replication-factor : 副本数量
 
