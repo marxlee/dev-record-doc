@@ -191,9 +191,15 @@ Driver 线程主要是初始化 SparkContext 对象，准备运行所需的上�
 一个 Spark 应用程序包括 Job、Stage 以及 Task 三个概念：   
 1.	Job 是以 Action 方法为界， 遇到一个 Action 方法则触发一个 Job；
 2.	Stage 是 Job 的子集，以 RDD 宽依赖(即 Shuffle)为界，遇到 Shuffle 做一次划分； 
-3.	Task 是 Stage 的子集，以并行度(分区数)来衡量，分区数是多少，则有多少个 task。 一个task  对应一个RDD的分区
+3.	Task 是 Stage 的子集，以并行度(分区数)来衡量，分区数是多少，则有多少个 task。 一个task  对应一个RDD的分区   
 
-Spark  的任务调度总体来说分两路进行， 一路是 Stage  级的调度， 一路是 Task级的调度，总体调度流程如下图所示： 
+宽窄依赖的界限: 当存在shuffle过程即为宽依赖, 没有shuffle过程为窄依赖  
+1. 宽依赖: 父RDD中的一个分区的数据分别分发到了子RDD的多个分区中, 这就表明有shuffle过程，父分区数据经过shuffle过程的hash分区器（也可自定义分区器）划分到子RDD。例如GroupByKey，reduceByKey，join，sortByKey等操作。
+2. 窄依赖: 父RDD的每个分区的数据直接到子RDD的对应一个分区（一分区对一分区），例如1号到5号分区的数据都只进入到子RDD的一个分区，这个过程没有shuffle。Spark中Stage的划分就是通过shuffle来划分。（shuffle可理解为数据的从原分区打乱重组到新的分区）如：map，filter
+总结：如果父RDD的一个Partition被一个子RDD的Partition所使用就是窄依赖，否则的话就是宽依赖。
+
+
+Spark  的任务调度总体来说分界两部分进行， 一路是 Stage  级的调度 一路是 Task级的调度，总体调度流程如下图所示： 
 图 4-3 Spark 任务调度概览:  
 ![image](https://github.com/marxlee/Development-doc/blob/master/spark/images/spark-driver-woker.png)
 
