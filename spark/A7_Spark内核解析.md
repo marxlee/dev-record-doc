@@ -500,10 +500,11 @@ Storage 内存和 Execution 内存都有预留空间，目的是防止 OOM，因
 
 
 Spark 1.6 之后引入的统一内存管理机制，与静态内存管理的区别在于存储内存和执行内存共享同一块空间，可以动态占用对方的空闲区域， 统一内存管理的堆内内存结构如图 1-4 所示： 
+![image](https://github.com/marxlee/Development-doc/blob/master/spark/images/spark-accord-stage-off-head.jpg)
+
 图 1-4  统一内存管理——堆内内存
 统一内存管理的堆外内存结构如图 1-5 所示： 
-
-
+![image](https://github.com/marxlee/Development-doc/blob/master/spark/images/spark-core-ex-1-5.jpg)
 
 图 1-5  统一内存管理——堆外内存
 其中最重要的优化在于动态占用机制，其规则如下： 
@@ -515,7 +516,7 @@ Spark 1.6 之后引入的统一内存管理机制，与静态内存管理的区�
 过程中的很多因素，实现起来较为复杂。
 统一内存管理的动态占用机制如图 1-6 所示： 
 
-
+![image](https://github.com/marxlee/Development-doc/blob/master/spark/images/spark-core-ex-1-6.png)
 
 图 1-6  同一内存管理——动态占用机制
 凭借统一内存管理机制， Spark  在一定程度上提高了堆内和堆外内存资源的利用率，降低了开发者维护 Spark 内存的难度，但并不意味着开发者可以高枕无忧。如果存储内存的空间太大或者说缓存的数据过多，反而会导致频繁的全量垃圾回收， 降低任务执行时的性能，因为缓存的 RDD  数据通常都是长期驻留内存的。所以要想充分发挥 Spark  的性能，需要开发者进一步了解存储内存和执行内存各自的管理方式和实现原理。
@@ -524,78 +525,69 @@ Spark 1.6 之后引入的统一内存管理机制，与静态内存管理的区�
 
 1.	RDD 的持久化机制
 弹性分布式数据集（ RDD）作为 Spark  最根本的数据抽象，是只读的分区记录
-（ Partition）的集合，只能基于在稳定物理存储中的数据集上创建，或者在其他已有的 RDD  上执行转换（ Transformation）操作产生一个新的 RDD。转换后的 RDD  与
-原始的 RDD  之间产生的依赖关系，构成了血统（ Lineage）。凭借血统，Spark  保
-证了每一个   RDD  都可以被重新恢复。但 RDD  的所有转换都是惰性的，即只有当
-一个返回结果给 Driver 的行动（Action）发生时，Spark 才会创建任务读取 RDD， 然后真正触发转换的执行。
-Task 在启动之初读取一个分区时，会先判断这个分区是否已经被持久化，如果没有则需要检查 Checkpoint 或按照血统重新计算。所以如果一个 RDD 上要执行多次行动，可以在第一次行动中使用 persist 或 cache 方法，在内存或磁盘中持久化或缓存这个 RDD， 从而在后面的行动时提升计算速度。
-事实上，cache 方法是使用默认的 MEMORY_ONLY 的存储级别将 RDD  持久化到内存，故缓存是一种特殊的持久化。 堆内和堆外存储内存的设计，便可以对缓存   RDD  时使用的内存做统一的规划和管理。
-RDD  的持久化由 Spark  的 Storage  模块负责，实现了 RDD  与物理存储的解
-耦合。Storage 模块负责管理 Spark 在计算过程中产生的数据， 将那些在内存或磁盘、在本地或远程存取数据的功能封装了起来。在具体实现时 Driver 端和 Executor 端的  Storage  模 块 构 成 了 主 从 式 的 架 构 ， 即  Driver  端的  BlockManager  为
-Master， Executor  端 的 BlockManager  为 Slave 。
-Storage 模块在逻辑上以 Block  为基本存储单位， RDD  的每个  Partition  经过处理后唯一对应一个   Block（ BlockId  的格式为 rdd_RDD-ID_PARTITION-ID  ）。
-Driver 端的 Master 负责整个 Spark 应用程序的 Block  的元数据信息的管理和维护，而 Executor 端的 Slave  需要将 Block  的更新等状态上报到 Master，同时接收
-Master  的命令，例如新增或删除一个 RDD。
+（ Partition）的集合，只能基于在稳定物理存储中的数据集上创建，或者在其他已有的 RDD  上执行转换（ Transformation）操作产生一个新的 RDD。转换后的 RDD 与原始的 RDD  之间产生的依赖关系，构成了血统（ Lineage）。凭借血统，Spark 保证了每一个   RDD  都可以被重新恢复。但 RDD  的所有转换都是惰性的，即只有当一个返回结果给 Driver 的行动（Action）发生时，Spark 才会创建任务读取 RDD， 然后真正触发转换的执行。  
+Task 在启动之初读取一个分区时，会先判断这个分区是否已经被持久化，如果没有则需要检查 Checkpoint 或按照血统重新计算。所以如果一个 RDD 上要执行多次行动，可以在第一次行动中使用 persist 或 cache 方法，在内存或磁盘中持久化或缓存这个 RDD， 从而在后面的行动时提升计算速度。  
+事实上，cache 方法是使用默认的 MEMORY_ONLY 的存储级别将 RDD  持久化到内存，故缓存是一种特殊的持久化。 堆内和堆外存储内存的设计，便可以对缓存   RDD  时使用的内存做统一的规划和管理。  
+RDD  的持久化由 Spark  的 Storage  模块负责，实现了 RDD  与物理存储的解耦合。Storage 模块负责管理 Spark 在计算过程中产生的数据， 将那些在内存或磁盘、在本地或远程存取数据的功能封装了起来。在具体实现时 Driver 端和 Executor 端的  Storage  模 块 构 成 了 主 从 式 的 架 构 ， 即  Driver  端的  BlockManager 为Master， Executor  端 的 BlockManager  为 Slave 。  
+Storage 模块在逻辑上以 Block  为基本存储单位， RDD  的每个  Partition  经过处理后唯一对应一个   Block（ BlockId  的格式为 rdd_RDD-ID_PARTITION-ID  ）。  
+Driver 端的 Master 负责整个 Spark 应用程序的 Block  的元数据信息的管理和维护，而 Executor 端的 Slave  需要将 Block  的更新等状态上报到 Master，同时接收 Master  的命令，例如新增或删除一个 RDD。
 
-
+![image](https://github.com/marxlee/Development-doc/blob/master/spark/images/spark-core-ex-5-1.png)
 
 图 5-1 Storage 模块示意图
-在对 RDD  持久化时，Spark   规定了 MEMORY_ONLY、MEMORY_AND_DISK
-等 7  种不同的存储级别 ，而存储级别是以下 5  个变量的组合：
+在对 RDD  持久化时，Spark   规定了 MEMORY_ONLY、MEMORY_AND_DISK 等 7  种不同的存储级别 ，而存储级别是以下 5  个变量的组合：
 代码清单 5-1 resourceOffer代码
+```
+class StorageLevel private(
+  private var _useDisk: Boolean, //磁盘
+  private var _useMemory: Boolean, //这里其实是指堆内内存
+  private var _useOffHeap: Boolean, //堆外内存
+  private var _deserialized: Boolean, //是否为非序列化
+  private var _replication: Int = 1 //副本个数
+)
+```
+
 Spark 中 7 种存储级别如下：
 表 5-1 Spark持久化级别
 
-持久化级别
-含义
-MEMORY_ONLY
-以非序列化的 Java 对象的方式持久化在 JVM 内存中。如果内存无法完全存储 RDD 所有的
-partition，那么那些没有持久化的 partition 就会在下一次需要使用它们的时候，重新被计算
-MEMORY_AND_DISK
-同上，但是当某些 partition 无法存储在内存中时，
-会持久化到磁盘中。下次需要使用这些 partition
+| 持久化级别 | 含义 |
+| :--:     | :--- |
+| MEMORY_ONLY | 以非序列化的 Java 对象的方式持久化在 JVM 内存中。如果内存无法完全存储 RDD 所有的partition，那么那些没有持久化的 partition 就会在下一次需要使用它们的时候，重新被计算持久化级别 | 
+| MEMORY_AND_DISK | 同上，但是当某些 partition 无法存储在内存中时，会持久化到磁盘中。下次需要使用这些 partition 时，需要从磁盘上读取 |
+| MEMORY_ONLY_SER | 同 MEMORY_ONLY，但是会使用 Java 序列化方式，将 Java 对象序列化后进行持久化。可以减少内存开销，但是需要进行反序列化，因此会加大CPU 开销 | 
+| MEMORY_AND_DISK_SER | 同 MEMORY_AND_DISK，但是使用序列化方式持久化 Java 对象 |
+| DISK_ONLY | 使用非序列化 Java 对象的方式持久化，完全存储到磁盘上 |
+| MEMORY_ONLY_2, MEMORY_AND_DISK_2, 等等 | 如果是尾部加了 2 的持久化级别，表示将持久化数据复用一份，保存到其他节点，从而在数据丢失时，不需要再次计算，只需要使用备份数据即可 | 
 
-时，需要从磁盘上读取
-MEMORY_ONLY_SER
-同 MEMORY_ONLY，但是会使用 Java 序列化方
-式，将 Java 对象序列化后进行持久化。可以减少内存开销，但是需要进行反序列化，因此会加大
-CPU 开销
-MEMORY_AND_DISK_SER
-同 MEMORY_AND_DISK，但是使用序列化方式
-持久化 Java 对象
-DISK_ONLY
-使用非序列化 Java 对象的方式持久化，完全存
-储到磁盘上
-MEMORY_ONLY_2
-MEMORY_AND_DISK_2
-等等
-如果是尾部加了 2 的持久化级别，表示将持久
-化数据复用一份，保存到其他节点，从而在数据丢失时，不需要再次计算，只需要使用备份数据即可
-通 过 对 数 据 结 构 的 分 析 ， 可 以 看 出 存 储 级 别 从 三 个 维 度 定 义 了 RDD  的
-Partition（同时也就是 Block）的存储方式： 
+
+通 过 对 数 据 结 构 的 分 析 ， 可 以 看 出 存 储 级 别 从 三 个 维 度 定 义 了 RDD 的Partition（同时也就是 Block）的存储方式： 
 1)	存储位置：磁盘／ 堆内内存／ 堆外内存。如 MEMORY_AND_DISK 是同时在磁盘和堆内内存上存储，实现了冗余备份。OFF_HEAP   则是只在堆外内存存储，
 目前选择堆外内存时不能同时存储到其他位置。
 2)	存储形式 ： Block  缓 存 到 存 储 内 存 后 ， 是 否 为 非 序 列 化 的 形 式 。 如
 MEMORY_ONLY  是非序列化方式存储， OFF_HEAP  是序列化方式存储。
 3)	副本数量：大于 1 时需要远程冗余备份到其他节点。如 DISK_ONLY_2 需要远程备份 1  个副本。
+
 2.	RDD 的缓存过程
 RDD 在缓存到存储内存之前， Partition 中的数据一般以迭代器（ Iterator）的数据结构来访问，这是 Scala 语言中一种遍历数据集合的方法。通过 Iterator 可以获取分区中每一条序列化或者非序列化的数据项(Record)，这些 Record   的对象实例
 在逻辑上占用了 JVM  堆内内存的 other  部分的空间， 同一   Partition  的不同
 Record  的存储空间并不连续。
+
 RDD 在缓存到存储内存之后， Partition 被转换成 Block， Record 在堆内或堆外存储内存中占用一块连续的空间。将 Partition 由不连续的存储空间转换为连续存储空间的过程， Spark 称之为"展开"（ Unroll） 。
 Block 有序列化和非序列化两种存储格式，具体以哪种方式取决于该 RDD 的存储级别。非序列化的 Block 以一种 DeserializedMemoryEntry 的数据结构定义， 用一个数组存储所有的对象实例，序列化的 Block 则以 SerializedMemoryEntry 的数据结构定义，用字节缓冲区（ ByteBuffer）来存储二进制数据。每个 Executor   的
 Storage 模块用一个链式 Map 结构（ LinkedHashMap）来管理堆内和堆外存储内存中所有的 Block 对象的实例，对这个 LinkedHashMap 新增和删除间接记录了内存的申请和释放。
+
 因为不能保证存储空间可以一次容纳   Iterator  中的所有数据， 当前的计算任
 务在   Unroll  时要向   MemoryManager  申请足够的   Unroll  空间来临时占位，空间
 不足则   Unroll  失败， 空间足够时可以继续进行。
-对于序列化的 Partition，其所需的 Unroll 空间可以直接累加计算，一次申请。对于非序列化的 Partition  则要在遍历 Record  的过程中依次申请，即每读取一
-条 Record，采样估算其所需的 Unroll 空间并进行申请，空间不足时可以中断，释放已占用的 Unroll  空间。
+对于序列化的 Partition，其所需的 Unroll 空间可以直接累加计算，一次申请。对于非序列化的 Partition  则要在遍历 Record  的过程中依次申请，即每读取一条 Record，采样估算其所需的 Unroll 空间并进行申请，空间不足时可以中断，释放已占用的 Unroll  空间。
 如果最终 Unroll 成功，当前 Partition 所占用的 Unroll 空间被转换为正常的缓存 RDD  的存储空间， 如下图所示。
 
-
+![image](https://github.com/marxlee/Development-doc/blob/master/spark/images/spark-core-ex-5-2.png)
 
 图 5-2 Spark Unroll
 在静态内存管理时， Spark 在存储内存中专门划分了一块 Unroll 空间， 其大小是固定的， 统一内存管理时则没有对 Unroll 空间进行特别区分，当存储空间不足时会根据动态占用机制进行处理。
+
+
 3.	淘汰与落盘
 由于同一个   Executor  的所有的计算任务共享有限的存储内存空间， 当有新的
 Block 需要缓存但是剩余空间不足且无法动态占用时，就要对 LinkedHashMap  中的旧 Block  进行淘汰（ Eviction） ， 而被淘汰的  Block  如果其存储级别中同时包含存储到磁盘的要求， 则要对其进行落盘（ Drop） ， 否则直接删除该   Block。
@@ -642,26 +634,7 @@ Driver 上有 BlockManagerMaster，负责对各个节点上的 BlockManager 内�
 每个节点都有一个 BlockManager，每个 BlockManager 创建之后， 第一件事即使去向 BlockManagerMaster 进行注册，此时 BlockManagerMaster 会为其长难句对应的 BlockManagerInfo 。
 BlockManager 运行原理如下图所示：
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+![image](https://github.com/marxlee/Development-doc/blob/master/spark/images/spark-core-ex-7-1.png)
 
 图 7-1 BlockManager 原理
 BlockManagerMaster 与 BlockManager 的关系非常像 NameNode 与 DataNode 的关系，BlockManagerMaster 中保存中 BlockManager 内部管理数据的元数据，进行维护，当 BlockManager 进行 Block 增删改等操作时，都会在 BlockManagerMaster 中进行元数据的变更， 这与 NameNode 维护 DataNode 的元数据信息，DataNode 中数据发生变化时 NameNode 中的元数据信息也会相应变化是一致的。
@@ -693,19 +666,12 @@ task 都使用一个大型外部变量时， 对于 Executor 内存的消耗是�
 
 
 Executor 上的所有 task 共用此变量，不再是一个 task 单独保存一个副本，这在一定程度上降低了 Spark 任务的内存占用。
+
+![image](https://github.com/marxlee/Development-doc/blob/master/spark/images/spark-core-ex-7-2.png)
+
 图 7-2 task 使用外部变量
 
-
-
-
-
-
-
-
-
-
-
-
+![image](https://github.com/marxlee/Development-doc/blob/master/spark/images/spark-core-ex-7-3.png)
 
 图 7-3  使用广播变量
 Spark  还尝试使用高效的广播算法分发广播变量， 以降低通信成本。
@@ -713,29 +679,13 @@ Spark 提供的 Broadcast Variable 是只读的，并且在每个 Executor 上�
 可以通过调用 SparkContext 的 broadcast()方法来针对每个变量创建广播变量。然后在算子的函数内，使用到广播变量时，每个 Executor 只会拷贝一份副本了，每个 task 可以使用广播变量的 value()方法获取值。
 在任务运行时，Executor 并不获取广播变量，当 task 执行到 使用广播变量的代码时，会向 Executor 的内存中请求广播变量，如下图所示：
 
-
+![image](https://github.com/marxlee/Development-doc/blob/master/spark/images/spark-core-ex-7-4.png)
 
 图 7-4 task 向 Executor 请求广播变量
 之后 Executor 会通过 BlockManager 向 Driver 拉取广播变量，然后提供给 task
 进行使用，如下图所示：
 
-
-
-
-
-
-——————————————— 尚硅谷大数据课程之 Spark 内核解析
-
-
-
-
-
-
-
-
-
-
-
+![image](https://github.com/marxlee/Development-doc/blob/master/spark/images/spark-core-ex-7-5.png)
 
 图 7-5 Executor 从 Driver 拉取广播变量
 广播大变量是 Spark 中常用的基础优化方法， 通过减少内存占用实现任务执行性能的提升。
@@ -748,25 +698,7 @@ Spark  提供的 Accumulator  主要用于多个节点对一个变量进行共�
 Accumulator 只提供了累加的功能，但是却给我们提供了多个 task 对于同一个变量并行操作的功能，但是 task 只能对 Accumulator 进行累加操作，不能读取它的值， 只有 Driver 程序可以读取 Accumulator 的值。
 Accumulator 的底层原理如下图所示： 
 
-
-
-
-
-
-——————————————— 尚硅谷大数据课程之 Spark 内核解析
-
-
-
-
-
-
-
-
-
-
-
-
-
+![image](https://github.com/marxlee/Development-doc/blob/master/spark/images/spark-core-ex-7-6.png)
 
 图 7-6  累加器原理
 
