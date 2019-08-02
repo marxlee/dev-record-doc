@@ -532,7 +532,7 @@ RDD  的持久化由 Spark  的 Storage  模块负责，实现了 RDD  与物理
 Storage 模块在逻辑上以 Block  为基本存储单位， RDD  的每个  Partition  经过处理后唯一对应一个   Block（ BlockId  的格式为 rdd_RDD-ID_PARTITION-ID  ）。  
 Driver 端的 Master 负责整个 Spark 应用程序的 Block  的元数据信息的管理和维护，而 Executor 端的 Slave  需要将 Block  的更新等状态上报到 Master，同时接收 Master  的命令，例如新增或删除一个 RDD。
 
-![image](https://github.com/marxlee/Development-doc/blob/master/spark/images/spark-core-ex-5-1.png)
+![image](https://github.com/marxlee/Development-doc/blob/master/spark/images/spark-core-ex-5-1.jpg)
 
 图 5-1 Storage 模块示意图
 在对 RDD  持久化时，Spark   规定了 MEMORY_ONLY、MEMORY_AND_DISK 等 7  种不同的存储级别 ，而存储级别是以下 5  个变量的组合：
@@ -582,7 +582,7 @@ Storage 模块用一个链式 Map 结构（ LinkedHashMap）来管理堆内和�
 对于序列化的 Partition，其所需的 Unroll 空间可以直接累加计算，一次申请。对于非序列化的 Partition  则要在遍历 Record  的过程中依次申请，即每读取一条 Record，采样估算其所需的 Unroll 空间并进行申请，空间不足时可以中断，释放已占用的 Unroll  空间。
 如果最终 Unroll 成功，当前 Partition 所占用的 Unroll 空间被转换为正常的缓存 RDD  的存储空间， 如下图所示。
 
-![image](https://github.com/marxlee/Development-doc/blob/master/spark/images/spark-core-ex-5-2.png)
+![image](https://github.com/marxlee/Development-doc/blob/master/spark/images/spark-core-ex-5-2.jpg)
 
 图 5-2 Spark Unroll
 在静态内存管理时， Spark 在存储内存中专门划分了一块 Unroll 空间， 其大小是固定的， 统一内存管理时则没有对 Unroll 空间进行特别区分，当存储空间不足时会根据动态占用机制进行处理。
@@ -634,7 +634,7 @@ Driver 上有 BlockManagerMaster，负责对各个节点上的 BlockManager 内�
 每个节点都有一个 BlockManager，每个 BlockManager 创建之后， 第一件事即使去向 BlockManagerMaster 进行注册，此时 BlockManagerMaster 会为其长难句对应的 BlockManagerInfo 。
 BlockManager 运行原理如下图所示：
 
-![image](https://github.com/marxlee/Development-doc/blob/master/spark/images/spark-core-ex-7-1.png)
+![image](https://github.com/marxlee/Development-doc/blob/master/spark/images/spark-core-ex-7-1.jpg)
 
 图 7-1 BlockManager 原理
 BlockManagerMaster 与 BlockManager 的关系非常像 NameNode 与 DataNode 的关系，BlockManagerMaster 中保存中 BlockManager 内部管理数据的元数据，进行维护，当 BlockManager 进行 Block 增删改等操作时，都会在 BlockManagerMaster 中进行元数据的变更， 这与 NameNode 维护 DataNode 的元数据信息，DataNode 中数据发生变化时 NameNode 中的元数据信息也会相应变化是一致的。
@@ -667,7 +667,7 @@ task 都使用一个大型外部变量时， 对于 Executor 内存的消耗是�
 
 Executor 上的所有 task 共用此变量，不再是一个 task 单独保存一个副本，这在一定程度上降低了 Spark 任务的内存占用。
 
-![image](https://github.com/marxlee/Development-doc/blob/master/spark/images/spark-core-ex-7-2.png)
+![image](https://github.com/marxlee/Development-doc/blob/master/spark/images/spark-core-ex-7-2.jpg)
 
 图 7-2 task 使用外部变量
 
@@ -698,7 +698,7 @@ Spark  提供的 Accumulator  主要用于多个节点对一个变量进行共�
 Accumulator 只提供了累加的功能，但是却给我们提供了多个 task 对于同一个变量并行操作的功能，但是 task 只能对 Accumulator 进行累加操作，不能读取它的值， 只有 Driver 程序可以读取 Accumulator 的值。
 Accumulator 的底层原理如下图所示： 
 
-![image](https://github.com/marxlee/Development-doc/blob/master/spark/images/spark-core-ex-7-6.png)
+![image](https://github.com/marxlee/Development-doc/blob/master/spark/images/spark-core-ex-7-6.jpg)
 
 图 7-6  累加器原理
 
