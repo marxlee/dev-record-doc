@@ -422,7 +422,7 @@ read 的性能会更好。
 而该机制与普通 SortShuffleManager 运行机制的不同在于： 第一， 磁盘写机制不同；第二，不会进行排序。也就是说，启用该机制的最大好处在于， shuffle write 过程中，不需要进行数据的排序操作，也就节省掉了这部分的性能开销。
 普通运行机制的 SortShuffleManager 工作原理如图 1-10 所示： 
 
-![image](https://github.com/marxlee/Development-doc/blob/master/spark/images/spark-SortShuffleManager-bypass.png)
+![image](https://github.com/marxlee/Development-doc/blob/master/spark/images/spark-core-ex-1-10.png)
 
 图 1-10 bypass 运行机制的 SortShuffleManager 工作原理
 
@@ -438,9 +438,6 @@ JVM  的堆内（On-heap）空间进行了更为详细的分配，以充分利�
 了堆外（Off-heap）内存，使之可以直接在工作节点的系统内存中开辟空间，进一步优化了
 内存的使用。
 堆内内存受到 JVM 统一管理，堆外内存是直接向操作系统进行内存的申请和释放。
-
-
-
 
 
 1.	堆内内存
@@ -535,6 +532,7 @@ Driver 端的 Master 负责整个 Spark 应用程序的 Block  的元数据信�
 ![image](https://github.com/marxlee/Development-doc/blob/master/spark/images/spark-core-ex-5-1.jpg)
 
 图 5-1 Storage 模块示意图
+
 在对 RDD  持久化时，Spark   规定了 MEMORY_ONLY、MEMORY_AND_DISK 等 7  种不同的存储级别 ，而存储级别是以下 5  个变量的组合：
 代码清单 5-1 resourceOffer代码
 ```
