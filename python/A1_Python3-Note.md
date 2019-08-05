@@ -866,7 +866,7 @@ print(sum_nums(1,2,3,4,5))
 设置不带可变参数的变量调用, 在执行是会报
 TypeError:  sum_nums1() takes 1 positional argument but 5 were given
 
-可以修改: sum_nums1((1,2,3,4,5))
+可以修改: sum_nums1((1,2,3,4,5)) 以元祖当做参数的形式传递
 """
 def sum_nums1(args):
     num = 0
@@ -875,6 +875,7 @@ def sum_nums1(args):
     return num
 sums=sum_nums1(1,2,3,4,5)
 print(sums)
+
 ```
 
 #### 26.9 元组和字典的拆包
