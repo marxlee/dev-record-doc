@@ -177,3 +177,139 @@ str, int, bool, float, bool (True, False)
 
 问题: 暂时无问题
 
+
+# Task2
+
+## 1.列表
+1. 标志
+2. 基本操作(创建，append( )，pop( ) ,del( ), 拷贝）
+3. 列表相关方法
+```
+"""
+定义List:
+使用[], 内部元素使用 "," 相隔  
+"""
+name_list = ["zhangshan", "lisi", "wangwu"] # 定义一个list
+name_list[0]  # 取值使用下标
+
+# 针对list操作的方法
+name_list[1] = "修改内容" # 针对某一个位置上修改数据
+name_list.append("new_name") # 末尾追加数据  
+name_list.count("wangwu") # 元素出现的次数   
+name_list.insert(1, "insert_name")  # 在 index = 1 的位置插入一条数据  
+name_list.reverse()   # 反转列表
+name_list.clear()     # 清理数据   
+name_list.extend(["八戒","唐僧"]) # 追加一个列表的数据  
+name_list.pop(index)     # 堆栈操作, pop 在列表尾部拿出一个元素, index参数可以不加参数, 会在末尾弹出一个元素
+name_list.sort()    # 排序赋值给自己
+name_list.copy()    # 赋值这个list列表
+name_list.index("lisi") # 注意, 如果lisi不在列表中, 程序异常   
+name_list.remove("wangwu")  # 删除  
+len(name_list)  # 列表的长度
+del name_list[1]  # 删除元素 使用关键字 del
+
+for in 遍历
+for i in name_list:
+    print(i)
+
+```
+
+## 2.元组
+1. 标志
+2. 基本操作（创建及不可变性）
+```
+# 创建一个元祖
+info_tuple = ("姓名", 10, 60.5)   
+# 空元祖
+nil_tuple = ()  
+# 验证tuple
+type(info_tuple) # <class:tuple>
+# 取值, 不能超过元祖的下标值, 会出现下标越界 tulpe index out of range
+info_tuple[0]
+# 定义一个元素的元祖
+single_tuple=(1,)
+#取值
+tuple(single_tuple)
+
+# 元祖提供方法 
+single_tuple.count(1)   # 统计
+single_tuple.index(1)   # 下标值
+
+# 循环遍历, 需求不高, 原因保存的数据类型不同, 想要对每个元素执行操作, 也是不方便的
+for i in info_tuple:
+    print(i, end="--")
+# console:  姓名--10--60.5
+
+```
+
+
+## 3.string字符串
+1. 定义及基本操作（+，*，读取方式）
+2. 字符串相关方法
+
+```
+# 演示
+
+# 双引号和单引号, 共同使用,只有当字符串里有\" 双引号的时候
+str1 = '这是一个字符串: "abcd"' 
+print(str1)
+
+#取值
+print(str1[1])
+
+#遍历
+for char in str1:
+    print(char, end=":")
+    
+# 以下操作于列表中的操作基本一致
+len(str1)
+# index方法取下标, 如果这个字符串中没有, 报错error
+str1.index("ab")
+# 统计字符数量, 如果这个字符串没有, 返回值为0
+str2.count("ab")
+
+"""
+提供了如下方法, 语法于其他语言基本一致, 类似java, 见名之意
+str.capitalize(   str.format_map(   str.isnumeric(    str.maketrans(    str.split(
+str.casefold(     str.index(        str.isprintable(  str.partition(    str.splitlines(
+str.center(       str.isalnum(      str.isspace(      str.replace(      str.startswith(
+str.count(        str.isalpha(      str.istitle(      str.rfind(        str.strip(
+str.encode(       str.isascii(      str.isupper(      str.rindex(       str.swapcase(
+str.endswith(     str.isdecimal(    str.join(         str.rjust(        str.title(
+str.expandtabs(   str.isdigit(      str.ljust(        str.rpartition(   str.translate(
+str.find(         str.isidentifier( str.lower(        str.rsplit(       str.upper(
+str.format(       str.islower(      str.lstrip(       str.rstrip(       str.zfill(
+"""
+```
+
+
+
+## 4.字符串格式化问题
+
+```
+"""
+Python 支持格式化字符串的输出 。尽管这样可能会用到非常复杂的表达式，但最基本的用法是将一个值插入到一个有字符串格式符 %s 的字符串中。
+
+"""
+print ("格式化: 字符串: %s 数字 %d " % ('小明', 10))
+
+"""
+%c	 格式化字符及其ASCII码
+%s	 格式化字符串
+%d	 格式化整数
+%u	 格式化无符号整型
+%o	 格式化无符号八进制数
+%x	 格式化无符号十六进制数
+%X	 格式化无符号十六进制数（大写）
+%f	 格式化浮点数字，可指定小数点后的精度
+%e	 用科学计数法格式化浮点数
+%E	 作用同%e，用科学计数法格式化浮点数
+%g	 %f和%e的简写
+%G	 %f 和 %E 的简写
+%p	 用十六进制数格式化变量的地址
+"""
+```
+
+问题: 无
+
+
