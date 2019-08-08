@@ -569,11 +569,11 @@ Block 需要缓存但是剩余空间不足且无法动态占用时，就要对 L
 
 执行内存主要用来存储任务在执行 Shuffle   时占用的内存，Shuffle   是按照一定规则对 RDD 数据重新分区的过程， 我们来看 Shuffle 的 Write 和 Read  两阶段对执行内存的使用： 
 1.	Shuffle Write  
-1)	若在 map 端选择普通的排序方式，会采用 ExternalSorter 进行外排，在内存中存储数据时主要占用堆内执行空间。  
-2)	若在 map 端选择 Tungsten 的排序方式，则采用 ShuffleExternalSorter 直接对以序列化形式存储的数据排序，在内存中存储数据时可以占用堆外或堆内执行空间，取决于用户是否开启了堆外内存以及堆外执行内存是否足够。  
+ *	若在 map 端选择普通的排序方式，会采用 ExternalSorter 进行外排，在内存中存储数据时主要占用堆内执行空间。  
+ *	若在 map 端选择 Tungsten 的排序方式，则采用 ShuffleExternalSorter 直接对以序列化形式存储的数据排序，在内存中存储数据时可以占用堆外或堆内执行空间，取决于用户是否开启了堆外内存以及堆外执行内存是否足够。  
 2.	Shuffle Read  
-1)	在对 reduce 端的数据进行聚合时， 要将数据交给 Aggregator 处理，在内存中存储数据时占用堆内执行空间。  
-2)	如果需要进行最终结果排序，则要将再次将数据交给 ExternalSorter 处理， 占用堆内执行空间。    
+ *	在对 reduce 端的数据进行聚合时， 要将数据交给 Aggregator 处理，在内存中存储数据时占用堆内执行空间。  
+ *	如果需要进行最终结果排序，则要将再次将数据交给 ExternalSorter 处理， 占用堆内执行空间。    
 
 在 ExternalSorter 和 Aggregator 中， Spark 会使用一种叫 AppendOnlyMap 的哈希表在堆内执行内存中存储数据，但在 Shuffle 过程中所有数据并不能都保存到该哈希表中， 当这个哈希表占用的内存会进行周期性地采样估算， 当其大到一定程度， 无法再从 MemoryManager 申请到新的执行内存时， Spark 就会将其全部内容存储到磁盘文件中， 这个过程被称为溢存(Spill)， 溢存到磁盘的文件最后会被归并(Merge)。
 Shuffle Write 阶段中用到的 Tungsten 是 Databricks  公司提出的对 Spark  优化内存和 CPU 使用的计划（钨丝计划） ， 解决了一些 JVM 在性能上的限制和弊端。Spark  会根据 Shuffle  的情况来自动选择是否采用 Tungsten  排序。
