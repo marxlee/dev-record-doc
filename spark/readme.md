@@ -12,9 +12,9 @@
 
 [6. Spark streaming](https://github.com/marxlee/Development-doc/blob/master/spark/A6_spark-streaming.md)
 
-[7. Spark内核解析](https://github.com/marxlee/Development-doc/blob/master/spark/A7_Spark内核解析.md)
+[7. Spark内核解析](https://github.com/marxlee/Development-doc/blob/master/spark/A7_Spark_core_analysis.md)
 
-[8. Spark性能调优](https://github.com/marxlee/Development-doc/blob/master/spark/A9_性能调优.md)
+[8. Spark性能调优](https://github.com/marxlee/Development-doc/blob/master/spark/A9_performance_tuning.md)
 
 [9. Spark问题解决](https://github.com/marxlee/Development-doc/blob/master/spark/AB1_Question.md)
 
