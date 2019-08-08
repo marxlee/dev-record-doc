@@ -556,13 +556,14 @@ Storage 模块用一个链式 Map 结构（ LinkedHashMap）来管理堆内和�
 ##### 3.	淘汰与落盘
 由于同一个   Executor  的所有的计算任务共享有限的存储内存空间， 当有新的
 Block 需要缓存但是剩余空间不足且无法动态占用时，就要对 LinkedHashMap  中的旧 Block  进行淘汰（ Eviction） ， 而被淘汰的  Block  如果其存储级别中同时包含存储到磁盘的要求， 则要对其进行落盘（ Drop） ， 否则直接删除该   Block。
-存储内存的淘汰规则为：
-λ	被淘汰的旧 Block 要与新 Block 的 MemoryMode 相同，即同属于堆外或堆内内存；
-λ	新旧 Block  不能属于同一个 RDD， 避免循环淘汰；
-λ	旧 Block  所属 RDD  不能处于被读状态， 避免引发一致性问题；
-λ	遍历 LinkedHashMap 中 Block，按照最近最少使用（ LRU） 的顺序淘汰， 直到满足新 Block  所需的空间。其中 LRU  是 LinkedHashMap  的特性。
-落盘的流程则比较简单， 如果其存储级别符合_useDisk 为 true 的条件， 再根据其_deserialized   判断是否是非序列化的形式， 若是则对其进行序列化， 最后将数
-据存储到磁盘，在 Storage  模块中更新其信息。
+存储内存的淘汰规则为 ：  
+
+1.	被淘汰的旧 Block 要与新 Block 的 MemoryMode 相同，即同属于堆外或堆内内存；
+2.	新旧 Block  不能属于同一个 RDD， 避免循环淘汰；
+3.	旧 Block  所属 RDD  不能处于被读状态， 避免引发一致性问题；
+4.	遍历 LinkedHashMap 中 Block，按照最近最少使用（ LRU） 的顺序淘汰， 直到满足新 Block  所需的空间。其中 LRU  是 LinkedHashMap  的特性。  
+
+落盘的流程则比较简单，如果其存储级别符合_useDisk 为 true 的条件，再根据其_deserialized 判断是否是非序列化的形式，若是则对其进行序列化,最后将数据存储到磁盘，在 Storage 模块中更新其信息。
 
 ### 6.4	执行内存管理
 
