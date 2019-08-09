@@ -240,12 +240,12 @@ TaskSetManager  负责监控管理同一个 Stage  中的 Tasks， TaskScheduler
 ![image](https://github.com/marxlee/Development-doc/blob/master/spark/images/spark-task-scheduler-driver.png)
   
 
-图 3-7 中，将 TaskSetManager 加入 rootPool 调度池中之后，调用 SchedulerBackend的 riviveOffers  方法给 driverEndpoint  发送 ReviveOffer  消息； driverEndpoint  收到ReviveOffer 消息后调用 makeOffers 方法，过滤出活跃状态的 Executo（r  这些 Executor都是任务启动时反向注册到 Driver 的 Executor），然后将 Executor 封装成 WorkerOffer对象 ； 准 备 好 计 算 资 源（ WorkerOffer ） 后， taskScheduler 基于这些资源调用resourceOffer 在 Executor 上分配 task。
+图 3-7 中，将 TaskSetManager 加入 rootPool 调度池中之后，调用 SchedulerBackend的 riviveOffers  方法给 driverEndpoint  发送 ReviveOffer  消息； driverEndpoint  收到ReviveOffer 消息后调用 makeOffers 方法，过滤出活跃状态的 Executor（这些 Executor都是任务启动时反向注册到 Driver 的 Executor），然后将 Executor 封装成 WorkerOffer对象 ； 准 备 好 计 算 资 源（ WorkerOffer ）后，taskScheduler 基于这些资源调用resourceOffer 在 Executor 上分配 task。
 
 
 #### 4.4.1	调度策略
 
-前 面讲 到， TaskScheduler  会 先把 DAGScheduler  给 过来 的 TaskSet  封装成 TaskSetManager 扔到任务队列里， 然后再从任务队列里按照一定的规则把它们取出来在 SchedulerBackend 给过来的 Executor 上运行。这个调度过程实际上还是比较粗粒度的，是面向 TaskSetManager 的。TaskScheduler 是以树的方式来管理任务队列，树中的节点类型为 Schdulable， 叶子节点为 TaskSetManager，非叶子节点为 Pool，下图是它们之间的继承关系。
+前 面讲 到， TaskScheduler  会 先把 DAGScheduler  给过来的 TaskSet  封装成 TaskSetManager 扔到任务队列里， 然后再从任务队列里按照一定的规则把它们取出来在 SchedulerBackend 给过来的 Executor 上运行。这个调度过程实际上还是比较粗粒度的，是面向 TaskSetManager 的。TaskScheduler 是以树的方式来管理任务队列，树中的节点类型为 Schdulable， 叶子节点为 TaskSetManager，非叶子节点为 Pool，下图是它们之间的继承关系。
 图 4-9  任务队列继承关系:  
 ![image](https://github.com/marxlee/Development-doc/blob/master/spark/images/spark-scheduler-extends.png)
 
@@ -270,7 +270,7 @@ FAIR  调度策略的树结构如下图所示： 图 4-11
 
 
 FAIR 模式中有一个 rootPool 和多个子 Pool， 各个子 Pool 中存储着所有待分配的 TaskSetMagager 。
-在    FAIR   模 式 中 ， 需 要 先 对 子    Pool  进 行 排 序 ， 再 对 子    Pool  里 面 的
+在 FAIR 模式中 ， 需要先对子    Pool  进 行 排 序，再对子 Pool  里面的
 TaskSetMagager 进行排序，因为 Pool 和 TaskSetMagager 都继承了 Schedulable 特质， 因此使用相同的排序算法。
 排序过程的比较是基于 Fair-share 来比较的，每个要排序的对象包含三个属性:
 runningTasks 值（ 正在运行的 Task 数）、minShare 值、weight 值，比较时会综合考量 runningTasks 值， minShare 值以及 weight 值。
