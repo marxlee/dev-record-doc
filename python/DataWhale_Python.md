@@ -312,4 +312,214 @@ print ("格式化: 字符串: %s 数字 %d " % ('小明', 10))
 
 问题: 无
 
+# Task3
+
+## 1.dict字典
+
+定义
+创建
+字典的方法
+```
+"""
+无序的对象集合
+列表是有序的对象集合
+定义 {} 格式类似于 Json, 相较于其他的语言, 更像是映射
+使用键值对存储数据 {key:value, key:value}
+键是唯一的, 键可以是字符串, 也得以是其他数据类型
+"""
+# 字典中的数据, 是无序的状态
+dic_person_xiaoming =  {"name":"小明",
+                        "age":10,
+                        "weight":60.2}
+
+# 字典的长度
+len(dic_person_xiaoming) 
+# 所有的keys 的值
+dic_person_xiaoming.keys()
+# 所有的values 的值
+dic_person_xiaoming.values()
+# 获取的是所有的元祖
+dic_person_xiaoming.items() 
+# 取值(key: 不存在会报错)
+dic_person_xiaoming["name"]
+
+
+# 删除指定的内容(不存在会报错)
+dic_person_xiaoming.pop("name")
+
+# 修改值(如果key存在-update, 不存在-insert)
+dic_person_xiaoming["name"] = "小明" 
+# update 合并字典, 如果字典中含有原字典中的字段, 字段将"重新"赋值
+dic_person_xiaoming.update({"gender":"1", "age":30})
+# 当字段不存在, 新增字段, 如果字段存在, "不赋值"
+dic_person_xiaoming.setdefault("weight",70)
+```
+
+## 2.集合
+
+特性
+创建
+方法
+```
+"""
+集合（set）是一个无序的不重复元素序列。
+可以使用大括号 { } 或者 set() 函数创建集合，注意：创建一个空集合必须用 set() 而不是 { }，因为 { } 是用来创建一个空字典。
+创建格式：
+"""
+parame = {'apple', 'orange', 'apple', 'pear', 'orange', 'banana'}
+# 或者
+set(("hello"))
+
+"""
+add()	为集合添加元素
+clear()	移除集合中的所有元素
+copy()	拷贝一个集合
+difference()	返回多个集合的差集
+difference_update()	移除集合中的元素，该元素在指定的集合也存在。
+discard()	删除集合中指定的元素
+intersection()	返回集合的交集
+intersection_update()	返回集合的交集。
+isdisjoint()	判断两个集合是否包含相同的元素，如果没有返回 True，否则返回 False。
+issubset()	判断指定集合是否为该方法参数集合的子集。
+issuperset()	判断该方法的参数集合是否为指定集合的子集
+pop()	随机移除元素
+remove()	移除指定元素
+symmetric_difference()	返回两个集合中不重复的元素集合。
+symmetric_difference_update()	移除当前集合中在另外一个指定集合相同的元素，并将另外一个指定集合中不同的元素插入到当前集合中。
+union()	返回两个集合的并集
+update()	给集合添加元素
+
+"""
+
+
+```
+
+## 3.判断语句（要求掌握多条件判断）
+
+```
+"""
+以下判断条件:
+==
+!=
+<
+>
+<=
+>=
+"""
+
+"""
+1. 简单sample: 
+if 判断条件:
+    条件成立, 执行 (这行代码前有四个空格, tab和空格, 不要混用)
+python if语句和其他语言不通, 其他语言可以添加 {} 表示当前判断语句需要执行代码块
+
+输入预想判断的数据: 需要注意的是, 这里有个转换int(input("请输入年龄age : ")), 如果不转换的直接进行对比, 会报 TypeErro str() >= int()
+if .. elif .. else .. if判断条件语句格式 
+"""
+age = int(input("请输入年龄age : ")) # 需要转换
+if age >= 10:  # 判断年龄的if
+    print("你的年龄超过10岁, %d" % age)
+    print("相同缩进代码, 属于条件满足的代码块")
+elif age < 5:  # else if 判断条件
+    print("当前小于 5 %d" % age)
+else:
+    print("条件不成立")
+ 
+
+"""
+2. sample: 嵌套
+逻辑运算符: 与and/ 或or/ 非not
+拼接条件
+if (condition1 and condition2) or (condition3 and condition4) or (condition5 and condition6):
+    run result...
+
+# 以下伪代码需要换行, 需要将所有的条件加入整体小括号, 按照严谨的缩进规则, 并且缩进"希望"的是和执行代码的缩进有所区别, 因此条件换行需要添加8个空格;
+if ((condition1 and condition2) 
+        or (condition3 and condition4) 
+        or (condition5 and condition6)):  # 缩进更多 8个空格
+    # 可以加个空行
+    run result...
+需要注意的是: not不是链接两个条件, 而是单独作为一个"非"条件处理
+"""
+num = int(input("输入数字: "))
+if num != 3 and 2 < num < 12:
+    print("数字(2, 12),并且不等于3, d=%d" % num)
+elif 30 > num > 20 or num == 17:
+    print("数字(20, 30),或者等于17, d=%d" % num)
+elif not 40 < num < 50:
+    print("数字不在(2,40)范围内, d=%d" % num)
+else:
+    print("判断条件不成立")
+
+"""
+字符串的判断: __eq__ 与 == 是用法相同的, 区别于其他语言, 以下代码我们复用以上的变量 num
+嵌套使用if语句需要注意: 严格注意代码缩进(***), 保证程序的执行不会有问题
+"""
+holiday_name = "女人节"
+if holiday_name.__eq__("圣诞"):
+    print("圣诞简写")
+    if num > 20
+        print("num > 20")
+elif holiday_name == "圣诞节":
+    print("是圣诞节")
+elif holiday_name.__contains__("女人"):
+    print("包含\"女\"单词")
+
+```
+
+## 4.三目表达式
+```
+x=2
+y=3
+ 
+if x > y:
+    print(x)
+else:
+    print(y)
+ 
+ 
+res='aaaaa' if x > y else 'bbbbbbb'     #三元表达式
+print(res)
+```
+
+
+## 5.循环语句
+
+```
+"""
+循环体结构: 
+for arg in list:
+    循环体代码
+else:
+    循环结束后, 会执行的代码, 如果: "循环体中有 break, 在执行break后, 是不会执行else代码块的"
+    
+"""
+
+"""
+判断同学在不在字典中
+"""
+students = [
+    {
+    "name":"小妹"
+    },
+    {
+    "name":"大妹"
+    }
+]
+# 寻找同学
+find_name = "小妹"
+for str in students:
+  # print(str)
+  if find_name == str["name"]:  # 判断字典key -> value
+      print("找到了同学: ", str)
+      break # 如果循环跳出, 不执行else操作
+else:
+    print("没有找到同学哟~ %s " % find_name)
+
+print("program end")
+
+```
+
+
+
 
