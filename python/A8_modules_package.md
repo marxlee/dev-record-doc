@@ -169,15 +169,17 @@ setup(name="hm_message",  # 包名
       py_modules=["hm_message.send_message",
                   "hm_message.receive_message"])
                   
-```                  
-
+```  
 有关字典参数的详细信息，可以参阅官方网站：  
-[官方网站](https://docs.python.org/2/distutils/apiref.html)
+[官方网站: https://docs.python.org/2/distutils/apiref.html](https://docs.python.org/2/distutils/apiref.html)
 
 2) 构建模块:  
 ```
 $ python3 setup.py build
+```
+
 3) 生成发布压缩包
+```
 $ python3 setup.py sdist
 ```
 注意：要制作哪个版本的模块，就使用哪个版本的解释器执行！
@@ -189,6 +191,7 @@ $ tar -zxvf hm_message-1.0.tar.gz
 
 $ sudo python3 setup.py install
 ```
+
 卸载模块:  
 直接从安装目录下，把安装模块的 目录 删除就可以  
 
@@ -198,6 +201,7 @@ $ sudo rm -r hm_message*
 ```
 
 ### 3.3 pip 安装第三方模块
+
 第三方模块 通常是指由 知名的第三方团队 开发的 并且被 程序员广泛使用 的 Python 包 / 模块  
 例如 pygame 就是一套非常成熟的 游戏开发模块  
 pip 是一个现代的，通用的 Python 包管理工具  
