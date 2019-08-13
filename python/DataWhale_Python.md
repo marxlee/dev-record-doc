@@ -841,3 +841,112 @@ os.write(fd, str)
 os.path 模块
 获取文件的属性信息。
 ```
+
+# Task 5
+1.类和对象
+```
+ 面向对象基本概念
+我们之前学习的编程方式就是 面向过程 的
+面相过程 和 面相对象，是两种不同的 编程方式
+对比 面向过程 的特点，可以更好地了解什么是 面向对象
+```
+
+2.正则表达式
+```
+re.match函数
+re.match 尝试从字符串的起始位置匹配一个模式，如果不是起始位置匹配成功的话，match()就返回none。
+re.match(pattern, string, flags=0)
+
+```
+
+3.re模块
+```
+正则表达式是一个特殊的字符序列，它能帮助你方便的检查一个字符串是否与某种模式匹配。
+
+Python 自1.5版本起增加了re 模块，它提供 Perl 风格的正则表达式模式。
+
+re 模块使 Python 语言拥有全部的正则表达式功能。
+
+compile 函数根据一个模式字符串和可选的标志参数生成一个正则表达式对象。该对象拥有一系列方法用于正则表达式匹配和替换。
+
+re 模块也提供了与这些方法功能完全一致的函数，这些函数使用一个模式字符串做为它们的第一个参数。
+
+本章节主要介绍 Python 中常用的正则表达式处理函数，如果你对正则表达式不了解，可以查看我们的 正则表达式 - 教程。
+```
+
+
+4.datetime模块学习
+```
+Python 程序能用很多方式处理日期和时间，转换日期格式是一个常见的功能。
+
+Python 提供了一个 time 和 calendar 模块可以用于格式化日期和时间。
+
+时间间隔是以秒为单位的浮点小数。
+
+每个时间戳都以自从1970年1月1日午夜（历元）经过了多长时间来表示。
+
+Python 的 time 模块下有很多函数可以转换常见日期格式。如函数time.time()用于获取当前时间戳, 如下实例:
+
+#!/usr/bin/python3
+
+import time;  # 引入time模块
+
+ticks = time.time()
+print ("当前时间戳为:", ticks)
+以上实例输出结果：
+
+当前时间戳为: 1459996086.7115328
+```
+
+
+5.http请求
+```
+1、发送请求
+
+import requests #导入requests，然后就可以为所欲为了
+
+#发送get请求
+
+r0 = requests.get("http://yunweicai.com")
+
+#发送post请求
+
+r1 = requests.post("http://yunweicai.com",data={key:value})
+
+#发送post请求，带json串
+
+json_data = {"user":"yunweicai","op":"post"}
+
+r11 = requesets.post("http://yunweicai.com",json=json_data)
+
+#put、delete、head、optiions请求也很简单
+
+r = requests.put('http://yunweicai.com/put', data = {'key':'value'})
+
+r = requests.delete('http://yunweicai.com/delete')
+
+r = requests.head('http://yunweicai.com/get')
+
+r = requests.options('http://yunweicai.com/get')
+
+2、URL参数
+
+URL 的查询字符串(query string)传递某种数据。如果你是手工构建 URL，那么数据会以键/值对的形式置于 URL 中，跟在一个问号的后面。例如， yunweicai.com/get?key=val。
+
+requests库操作就比较优雅了，requests 允许你使用 params 关键字参数，以一个字符串字典来提供这些参数。
+
+payload = {'key1': 'value1', 'key2': 'value2'}
+
+r = requests.get("http://yunweicai.com/get", params=payload)
+
+通过打印输出该 URL，你能看到 URL 已被正确编码：
+
+print(r.url)
+```
+
+
+# Task 6
+
+
+
+
