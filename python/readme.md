@@ -24,7 +24,7 @@
 
 12. [飞机大战](https://github.com/marxlee/Development-doc/blob/master/python/AB3_game_plane_fight.md)
 
-
+13. [练习](https://github.com/marxlee/Development-doc/blob/master/python/idea_files/)
 
 
 
