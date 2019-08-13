@@ -10,7 +10,7 @@
 
 5. [类属性和方法](https://github.com/marxlee/Development-doc/blob/master/python/A5_cls_and_method.md)
 
-6. [单例](https://github.com/marxlee/Development-doc/blob/master/A6_single.md)
+6. [单例](https://github.com/marxlee/Development-doc/blob/master/python/A6_single.md)
 
 7. [异常](https://github.com/marxlee/Development-doc/blob/master/python/A7_Exception.md)
 
