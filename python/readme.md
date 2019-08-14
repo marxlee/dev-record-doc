@@ -20,7 +20,7 @@
 
 10. [文本编码](https://github.com/marxlee/Development-doc/blob/master/python/AB1_file_encodeing.md)
 
-11. [内建函数 evel](https://github.com/marxlee/Development-doc/blob/master/python/AB2_inside_def.md)
+11. [内建函数 eval](https://github.com/marxlee/Development-doc/blob/master/python/AB2_inside_def.md)
 
 12. [飞机大战](https://github.com/marxlee/Development-doc/tree/master/python/Game/A1_plane_fight)
 
