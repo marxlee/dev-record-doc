@@ -22,7 +22,7 @@
 
 11. [内建函数 evel](https://github.com/marxlee/Development-doc/blob/master/python/AB2_inside_def.md)
 
-12. [飞机大战](https://github.com/marxlee/Development-doc/blob/master/python/AB3_game_plane_fight.md)
+12. [飞机大战](https://github.com/marxlee/Development-doc/tree/master/python/Game/A1_plane_fight)
 
 13. [练习](https://github.com/marxlee/Development-doc/blob/master/python/idea_files/)
 
