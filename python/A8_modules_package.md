@@ -231,11 +231,16 @@ $ sudo rm -r hm_message*
 $ sudo pip install pygame
 $ sudo pip uninstall pygame
 
+
 # 将模块安装到 Python 3.x 环境
 $ sudo pip3 install pygame
 $ sudo pip3 uninstall pygame
+
+
 在 Mac 下安装 iPython
 $ sudo pip install ipython
+
+
 在 Linux 下安装 iPython
 $ sudo apt install ipython
 $ sudo apt install ipython3
