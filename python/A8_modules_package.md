@@ -141,7 +141,7 @@ if \_\_name\_\_ == "\_\_main\_\_":
     在 receive_message 文件中定义一个 receive 函数
     在外部直接导入 hm_message 的包
  
-__ \_\_init\_\_.py __  
+\_\_init\_\_.py
 要在外界使用 包 中的模块，需要在 \_\_init\_\_.py 中指定 对外界提供的模块列表  
 
 ```
