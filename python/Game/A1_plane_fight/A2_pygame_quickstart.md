@@ -173,6 +173,10 @@ screen.blit(bg, (0, 0))
 
 # 3> 更新显示
 pygame.display.update()
+
+# Mac 上加上当前事件获取方法, 可以显示图片, 如果不加会出现空白
+pygame.event.get()
+
 ```
 
 ### 代码演练 II —— 绘制英雄图像
