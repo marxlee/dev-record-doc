@@ -198,13 +198,21 @@ $ python3 setup.py sdist
 $ tar -zxvf hm_message-1.0.tar.gz 
 
 $ sudo python3 setup.py install
+
+# 命令会将包加入到 python3/dist-packages/目录下, 完成安装, 使用import进行引用, tab按键会智能提示
+
 ```
 
 卸载模块:  
 直接从安装目录下，把安装模块的 目录 **删除就可以**  
 
 ```
+# import hm_message
+# 可以使用 hm_message.__file__ 打印出模块的路径
+# 退出终端, 进入python3 文件夹 删除相应文件即可
+
 $ cd /usr/local/lib/python3.5/dist-packages/
+
 $ sudo rm -r hm_message*
 ```
 
