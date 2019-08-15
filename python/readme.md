@@ -24,7 +24,7 @@
 
 12. [飞机大战](https://github.com/marxlee/Development-doc/tree/master/python/Game/A1_plane_fight)
 
-13. [练习](https://github.com/marxlee/Development-doc/blob/master/python/idea_files/)
+13. [代码实现](https://github.com/marxlee/Development-doc/blob/master/python/idea_files/)
 
 
 
