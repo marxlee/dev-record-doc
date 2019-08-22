@@ -19,6 +19,8 @@ pip install -U pip virtualenv
 pip install --user --upgrade tensorflow  # install in $HOME
 
 # 注意, 这个版本安装的是1.4版本, 如果python 版本过低的情况下, 是不能安装成功的
+# 执行以下命令, 成功会返回数据 Tensor<....>
+python -c "import tensorflow as tf; print(tf.reduce_sum(tf.random.normal([1000, 1000])))"
 
 ```
 
