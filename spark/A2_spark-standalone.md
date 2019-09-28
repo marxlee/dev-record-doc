@@ -91,7 +91,7 @@ scala> sc.textFile("./word.txt")
 .reduceByKey(_+_)
 .collect
 
-res0: Array[(String, Int)] = Array((hive,1), (atguigu,1), (spark,1), (hadoop,1), (hbase,1))
+res0: Array[(String, Int)] = Array((hive,1), (atg,1), (spark,1), (hadoop,1), (hbase,1))
 
 ```
 
