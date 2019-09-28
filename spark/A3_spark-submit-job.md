@@ -89,7 +89,7 @@ spark shell仅在测试和验证我们的程序时使用的较多，在生产环
 ```
 2）编写代码
 ```
-package com.atguigu
+package com.xxxX
 
 import org.apache.spark.{SparkConf, SparkContext}
 
