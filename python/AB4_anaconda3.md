@@ -9,3 +9,9 @@
 ## pycharm引用
 system interpretation:   
 /Users/libinbin/anaconda3/python.app/Contents/MacOS/python
+
+
+## 安装 graphviz 
+conda install -c conda-forge graphviz
+conda install -c conda-forge python-graphviz
+
