@@ -24,6 +24,19 @@
     * MySql
     * Redis
     
+## [Linux 服务器](dev-linux)
+    * gcc 
+    * mysql
+    * scp 
+    * tomcat
+    * napdate
+    * nginx
+    * crontab
+    * 静态ip
+    
+ 
+    
+
     
 
 
