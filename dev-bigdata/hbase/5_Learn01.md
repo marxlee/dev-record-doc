@@ -2,7 +2,7 @@
 # HBase 学习笔记
 
 ## 一. 架构图
-![Hbase架构](https://github.com/marxlee/Development-doc/blob/master/hbase/img/Hbase-架构1.jpg)
+![Hbase架构](./img/Hbase-架构1.jpg)
 
 从图中可以看出Hbase是由Client、Zookeeper、Master、HRegionServer、HDFS等几个组件组成，下面来介绍一下几个组件的相关功能：
 ### 1）Client
@@ -90,7 +90,7 @@ HBASE 中通过rowkey和columns确定的为一个存贮单元称为cell。
 
 ### 5 命名空间
 结构
-![命名空间](https://github.com/marxlee/Development-doc/blob/master/hbase/img/Hbase命名空间.jpg)
+![命名空间](./img/Hbase命名空间.jpg)
 
 *  Table：表，所有的表都是命名空间的成员，即表必属于某个命名空间，如果没有指定，则在default默认的命名空间中。
 *  RegionServer group：一个命名空间包含了默认的RegionServer Group。
@@ -100,10 +100,10 @@ HBASE 中通过rowkey和columns确定的为一个存贮单元称为cell。
 
 ## HBase原理
 ### 1. 读流程
-![流程图](https://github.com/marxlee/Development-doc/blob/master/hbase/img/Hbase-读流程.jpg)
+![流程图](./img/Hbase-读流程.jpg)
 
 
-![流程图](https://github.com/marxlee/Development-doc/blob/master/hbase/img/Hbase-读数据微观流程.png)
+![流程图](./img/Hbase-读数据微观流程.png)
 
 *  Client先访问zookeeper，从meta表读取region的位置，然后读取meta表中的数据。meta中又存储了用户表的region信息；
 *  根据namespace、表名和rowkey在meta表中找到对应的region信息；
@@ -114,7 +114,7 @@ HBASE 中通过rowkey和columns确定的为一个存贮单元称为cell。
 *  如果是从StoreFile里面读取的数据，不是直接返回给客户端，而是先写入BlockCache，再返回给客户端。
 
 ### 2. 写流程
-![流程图](https://github.com/marxlee/Development-doc/blob/master/hbase/img/Hbase-写流程.jpg)
+![流程图](./img/Hbase-写流程.jpg)
 
 *  Client向HregionServer发送写请求；
 *  HregionServer将数据写到HLog（write ahead log）。为了数据的持久化和恢复；
