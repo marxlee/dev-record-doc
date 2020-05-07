@@ -31,7 +31,7 @@
     如果需求复杂，代码会变得很复杂
     开发复杂项目，没有固定的套路，开发难度很大！
 
-![image](https://github.com/marxlee/Development-doc/blob/master/python/images/oop_001_1.png)
+![image](./images/oop_001_1.png)
 
 
 ##### 2) 面向对象 —— 谁来做？
