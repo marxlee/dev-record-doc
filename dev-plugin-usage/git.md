@@ -26,9 +26,12 @@ git branch --list
 
 # 回滚到指定提交日志
 git reset --hard <uid>
+# 回退到上一个版本
+git reset --hard HEAD
 
 # 删除缓存区文件
 git reset HEAD <file>
+
 
 # 添加一个远程仓库
 git remote add origin https://github.com/marxlee/Development-doc.git
