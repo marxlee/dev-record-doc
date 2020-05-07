@@ -1,6 +1,7 @@
 
 # Git command
 
+### Git 常用命令
 ```
 # 初始化文件目录(新建仓库)
 git init
@@ -31,7 +32,19 @@ git reset HEAD <file>
 
 # 添加一个远程仓库
 git remote add origin https://github.com/marxlee/Development-doc.git
-
-
 ```
+
+### Git 大文件操作
+```
+1. 先安装 git-lfs
+brew install git-lfs
+2. git 内部安装
+git lfs install
+3. 追踪文件后缀: 也可以是指定文件, 或者文件后缀
+git lfs track "*.psd"
+4. 提交到缓冲区
+git add .gitattributes
+```
+
+
 
