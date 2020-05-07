@@ -11,7 +11,7 @@ ASCII 编码
 一个 ASCII 在内存中占用 1 个字节 的空间  
 8 个 0/1 的排列组合方式一共有 256 种，也就是 2 ** 8  
 001_ASCII编码表1￼  
-![img](https://github.com/marxlee/Development-doc/blob/master/python/images/py_a9_3.png)
+![img](./images/py_a9_3.png)
 
 UTF-8 编码格式    
 计算机中使用 1~6 个字节 来表示一个 UTF-8 字符，涵盖了 地球上几乎所有地区的文字  

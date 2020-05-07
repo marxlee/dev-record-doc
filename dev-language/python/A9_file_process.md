@@ -15,7 +15,7 @@
 
 
 ##### 文件的作用  
-![img](https://github.com/marxlee/Development-doc/blob/master/python/images/py_a9_1.png)
+![img](./images/py_a9_1.png)
 
 
 ### 1.2 文件的存储方式
@@ -163,7 +163,7 @@ file.close()
 目标:  
 用代码的方式，来实现文件复制过程
 
-![img](https://github.com/marxlee/Development-doc/blob/master/python/images/py_a9_2.png)
+![img](./images/py_a9_2.png)
 
 ##### 小文件复制:  
 打开一个已有文件，读取完整内容，并写入到另外一个文件
@@ -245,7 +245,7 @@ file_write.close()
 2. 一个 ASCII 在内存中占用 1 个字节 的空间  
   -1) 8 个 0/1 的排列组合方式一共有 256 种，也就是 2 ** 8  
 
-![img](https://github.com/marxlee/Development-doc/blob/master/python/images/py_a9_3.png)
+![img](./images/py_a9_3.png)
 
 
 ##### UTF-8 编码格式    

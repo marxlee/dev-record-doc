@@ -33,7 +33,7 @@ Python 的解释器获得对象的 __引用__ 后，将引用作为 __第一个�
 否则 __Python__ 的解释器 __得不到__ 分配了空间的 __对象引用__ ，就不会调用对象的初始化方法
 注意：\_\_new\_\_ 是一个静态方法，在调用时需要 主动传递 __cls__ 参数
 
-![img](https://github.com/marxlee/Development-doc/blob/master/python/images/py_a6_1.png)
+![img](./images/py_a6_1.png)
 
 示例代码
 ```
@@ -58,7 +58,7 @@ print(player)
 如果 __类属性__ __is None__ ，调用父类方法分配空间，并在类属性中记录结果
 返回 __类属性__ 中记录的 __对象引用__
 
-![img](https://github.com/marxlee/Development-doc/blob/master/python/images/py_a6_2.png)
+![img](./images/py_a6_2.png)
 
 ```
 class MusicPlayer(object):

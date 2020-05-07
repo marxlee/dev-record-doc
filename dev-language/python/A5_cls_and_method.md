@@ -13,7 +13,7 @@
     1) 在内存中为对象 __分配空间__
     2) 调用初始化方法 \_\_init\_\_ 为 对象初始化
 3. 对象创建后，__内存__ 中就有了一个对象的 __实实在在__ 的存在 —— __实例__  
-![img](https://github.com/marxlee/Development-doc/blob/master/python/images/py_a5_1.png)
+![img](./images/py_a5_1.png)
 
 
 因此，通常也会把：  
@@ -44,7 +44,7 @@ Python 中 __一切皆对象__ ：
     1) 类属性
     2) 类方法
 5. 通过 __类名.方法__ 的方式可以 __访问类的属性__ 或者 __调用类的方法__   
-![img](https://github.com/marxlee/Development-doc/blob/master/python/images/py_a5_2.png)
+![img](./images/py_a5_2.png)
 
 
 ## 02. 类属性和实例属性
@@ -92,7 +92,7 @@ print("现在创建了 %d 个工具" % Tool.count)
 ### 2.2 属性的获取机制（科普）
 在 Python 中 属性的获取 存在一个 向上查找机制
 
-![img](https://github.com/marxlee/Development-doc/blob/master/python/images/py_a5_3.png)
+![img](./images/py_a5_3.png)
 
 因此，要访问类属性有两种方式：  
     类名.类属性
@@ -134,7 +134,7 @@ __示例需求__ :
 每件工具都有自己的 __name__  
 需求 —— 在 __类__ 封装一个 __show_tool_count__ 的类方法，输出使用当前这个类，创建的对象个数  
 
-![img](https://github.com/marxlee/Development-doc/blob/master/python/images/py_a5_4.png)
+![img](./images/py_a5_4.png)
 
 ```
 @classmethod
@@ -190,7 +190,7 @@ class Dog(object):
 2) 查看历史最高分  
 3) 创建游戏对象，开始游戏  
 
-![img](https://github.com/marxlee/Development-doc/blob/master/python/images/py_a5_5.png)
+![img](./images/py_a5_5.png)
 
 案例小结:  
     __实例方法__ —— 方法内部需要访问 __实例属性__  

@@ -15,7 +15,7 @@
 以 继承 和 重写父类方法 为前提  
 是调用方法的技巧，不会影响到类的内部设计  
 016_多态示意图￼
-![img](https://github.com/marxlee/Development-doc/blob/master/python/images/py_a4_1.png)
+![img](./images/py_a4_1.png)
 
 ## 多态案例演练
 需求
@@ -27,7 +27,7 @@
 在方法内部，直接让 狗对象 调用 __game__ 方法  
 
 016_多态￼  
-![img](https://github.com/marxlee/Development-doc/blob/master/python/images/py_a4_2.png)
+![img](./images/py_a4_2.png)
 
 案例小结:  
 

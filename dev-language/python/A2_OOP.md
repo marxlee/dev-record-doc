@@ -48,9 +48,9 @@
     更加适合应对复杂的需求变化，是专门应对复杂项目开发，提供的固定套路
     需要在面向过程基础上，再学习一些面向对象的语法
 
-![image](https://github.com/marxlee/Development-doc/blob/master/python/images/oop_001_2.png)
+![image](./images/oop_001_2.png)
 
-![image](https://github.com/marxlee/Development-doc/blob/master/python/images/oop_001_3.png)
+![image](./images/oop_001_3.png)
 
 
 # 类和对象
@@ -68,7 +68,7 @@
 类 就相当于制造飞机时的图纸，是一个 模板，是 负责创建对象的
 
 002_飞机设计图纸￼  
-![image](https://github.com/marxlee/Development-doc/blob/master/python/images/oop_002_1.png)
+![image](./images/oop_002_1.png)
 
 #### 1.2 对象
 对象 是 由类创建出来的一个具体存在，可以直接使用由 哪一个类 创建出来的 对象，就拥有在 哪一个类 中定义的：
@@ -79,7 +79,7 @@
 在程序开发中，应该 先有类，再有对象
 
 003_飞机对象￼  
-![image](https://github.com/marxlee/Development-doc/blob/master/python/images/oop_002_2.png)
+![image](./images/oop_002_2.png)
 
 ### 02. 类和对象的关系
     类是模板，对象 是根据 类 这个模板创建出来的，应该 先有类，再有对象
@@ -90,7 +90,7 @@
     在使用面相对象开发前，应该首先分析需求，确定一下，程序中需要包含哪些类！
 
 001_植物大战僵尸类图￼  
-![image](https://github.com/marxlee/Development-doc/blob/master/python/images/oop_002_3.png)
+![image](./images/oop_002_3.png)
 
 在程序开发中，要设计一个类，通常需要满足一下三个要素：
     类名 这类事物的名字，满足大驼峰命名法
@@ -115,7 +115,7 @@
     2. 小美 今年 17 岁，身高 1.65，小美不跑步，小美喜欢 吃 东西
 
 002_Person类￼  
-![image](https://github.com/marxlee/Development-doc/blob/master/python/images/oop_002_4.png)
+![image](./images/oop_002_4.png)
 
 #### 练习 2
 需求
@@ -124,7 +124,7 @@
    3. 看见家人 摇尾巴
 
 003_Dog类￼  
-![image](https://github.com/marxlee/Development-doc/blob/master/python/images/oop_002_5.png)
+![image](./images/oop_002_5.png)
 
 
 # 面相对象基础语法
@@ -259,7 +259,7 @@ lazy_cat = Cat()
 lazy_cat.name = "大懒猫"
 lazy_cat.eat()
 ```
-![image](https://github.com/marxlee/Development-doc/blob/master/python/images/oop_003_1.png)
+![image](./images/oop_003_1.png)
 
 1. 在 类的外部，通过 变量名. 访问对象的 属性和方法
 2. 在 类封装的方法中，通过 self. 访问对象的 属性和方法

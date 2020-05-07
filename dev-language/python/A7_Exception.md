@@ -12,7 +12,7 @@
 1. 程序在运行时，如果 Python 解释器 遇到 到一个错误，会停止程序的执行，并且提示一些错误信息，这就是 异常
 2. 程序停止执行并且提示错误信息 这个动作，我们通常称之为：抛出(raise)异常
 
-![img](https://github.com/marxlee/Development-doc/blob/master/python/images/py_a7_1.png)
+![img](./images/py_a7_1.png)
 
 程序开发时，很难将 所有的特殊情况 都处理的面面俱到，通过 异常捕获 可以针对突发事件做集中的处理，从而保证程序的 稳定性和健壮性
 
@@ -173,7 +173,7 @@ except Exception as result:
 示例:  
 提示用户 输入密码，如果 长度少于 8，抛出 异常
 
-![img](https://github.com/marxlee/Development-doc/blob/master/python/images/py_a7_2.png)
+![img](./images/py_a7_2.png)
 
 注意:  
 当前函数 只负责 提示用户输入密码，如果 密码长度不正确，需要其他的函数进行额外处理  

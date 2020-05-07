@@ -13,7 +13,7 @@
 #### 1.1 继承的概念、语法和特点
 继承的概念：子类 拥有 父类 的所有 方法 和 属性  
 
-![img](https://github.com/marxlee/Development-doc/blob/master/python/images/py_a3_1.png)
+![img](./images/py_a3_1.png)
 
 ##### 1) 继承的语法  
 ```
@@ -50,7 +50,7 @@ __子类__ 拥有 __父类__ 以及 __父类的父类__ 中封装的所有 __属
 应用场景:  
 当 __父类__ 的方法实现不能满足子类需求时，可以对方法进行 __重写(override)__
 
-![img](https://github.com/marxlee/Development-doc/blob/master/python/images/py_a3_2.png)
+![img](./images/py_a3_2.png)
 
 __重写__ 父类方法有两种情况：
     __覆盖__ 父类的方法
@@ -97,7 +97,7 @@ __子类对象__ 可以通过 __父类__ 的 __公有方法__ 间接 __访问到
 __私有属性、方法__ 是对象的隐私，不对外公开， __外界__ 以及 __子类__ 都不能直接访问  
 __私有属性、方法__ 通常用于做一些内部的事情  
 
-![img](https://github.com/marxlee/Development-doc/blob/master/python/images/py_a3_3.png)
+![img](./images/py_a3_3.png)
 
 1. B 的对象不能直接访问 \_\_num2 属性  
 2. B 的对象不能在 demo 方法内访问 \_\_num2 属性  
@@ -111,7 +111,7 @@ __私有属性、方法__ 通常用于做一些内部的事情
 子类 可以拥有 多个父类，并且具有 所有父类 的 __属性 和 方法__   
 例如： __孩子__ 会继承自己 __父亲 和 母亲__ 的 特性  
 
-![img](https://github.com/marxlee/Development-doc/blob/master/python/images/py_a3_4.png)
+![img](./images/py_a3_4.png)
 
 ```
 class 子类名(父类名1, 父类名2...)
@@ -123,7 +123,7 @@ class 子类名(父类名1, 父类名2...)
 如果 不同的父类 中存在 同名的方法，子类对象 在调用方法时，会调用 哪一个父类中的方法呢？  
 提示：开发时，应该尽量避免这种容易产生混淆的情况！ —— 如果 __父类之间__ 存在 __同名的属性或者方法__，应该 __尽量避免__ 使用多继承  
 
-![img](https://github.com/marxlee/Development-doc/blob/master/python/images/py_a3_5.png)
+![img](./images/py_a3_5.png)
 
 
 __Python 中的 MRO —— 方法搜索顺序（知道）__ :   
