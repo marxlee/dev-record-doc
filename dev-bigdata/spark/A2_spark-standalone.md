@@ -1,4 +1,7 @@
-## Stanalone模式安装
+# Stanalone模式安装
+
+### [跳至上一章](./A1_WhatIsSpark.md)
+
 ```
 1）上传并解压spark安装包
 [hadoop@hadoop102 sorfware]$ tar -zxvf spark-2.1.1-bin-hadoop2.7.tgz -C /opt/module/
@@ -217,3 +220,5 @@ HADOOP_CONF_DIR=/opt/module/hadoop-2.7.2/etc/hadoop
 ln -s ../../hive-1.2.2-bin/conf/hive-site.xml
 
 
+
+### [跳至下一章](./A3_spark-submit-job.md)
