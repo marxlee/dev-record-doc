@@ -1,4 +1,4 @@
-# SPARK
+# 1. Spark介绍
 
 ## Spark概述
 ### 什么是Spark
@@ -68,5 +68,5 @@ yarn-cluster：Driver程序运行在由RM（ResourceManager）启动的AP（APPM
 
 
 
-#### [跳至下一章](./A2_spark-standalone.md)
+#### [跳至下一章](A2_spark-install.md)
 

@@ -1,7 +1,7 @@
-
+# 3. Spark提交过程
+### [跳至上一章](./A2_spark-install.md)
 
 ## 提交过程
-
 1、通过Jar包提交任务【工作中的主要方式】  
 * 1、需要通过bin/spark-submit来提交  
 * 2、【必需】--class 指定你jar包的主类  
@@ -118,3 +118,4 @@ WordCount.jar \
 ```
 
 
+### [跳至下一章](./A4_transformation.md)

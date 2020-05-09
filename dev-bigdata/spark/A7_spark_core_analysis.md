@@ -1,6 +1,6 @@
-# Spark 内核解析
+# 7. Spark 内核解析
 
-
+### [跳至上一章](./A6_spark-streaming.md)
 
 ## 1.	Spark	内核概述
 
@@ -664,3 +664,6 @@ Accumulator 的底层原理如下图所示：
 ## 8.总结
 
 Spark 的内核原理对于更好的使用 Spark 完成开发任务有着非常重要的作用， 我们对 Spark 的部署模式、通信架构、任务调度机制、Shuffle 过程、内存管理机制以及 Spark 核心组件进行了详细分析， 这些内容都是 Spark 最为重要的架构原理，不断深化对于 Spark 内核架构的理解， 在更高的层次上去使用 Spark 技术框架。
+
+
+### [跳至下一章](./A8_performance_tuning.md)

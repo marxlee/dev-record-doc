@@ -1,4 +1,6 @@
-# Spark core
+# 4. Spark core
+
+### [跳至上一章](./A3_spark-submit-job.md)
 
 ## TransFormation
 ```
@@ -557,4 +559,4 @@ scala> rdd.collect().foreach(println)
 ```
 
 
-
+### [跳至下一章](./A5_spark-sql.md)

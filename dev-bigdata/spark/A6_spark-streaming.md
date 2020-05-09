@@ -1,4 +1,6 @@
-# spark-streaming
+# 6. Spark-streaming
+
+### [跳至上一章](./A5_spark-sql.md)
 
 ## 自定义接受器
 
@@ -201,6 +203,6 @@ rddDStream.reduceByKeyAndWindow((x:Int, y:Int) => x + y,(a:Int, b:Int)=>a-b, Sec
 
 
 
-
+### [跳至下一章](./A7_spark_core_analysis.md)
 
 

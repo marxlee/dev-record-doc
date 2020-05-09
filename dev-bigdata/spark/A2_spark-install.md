@@ -1,7 +1,8 @@
-# Stanalone模式安装
+# 2. Spark安装模式
 
 ### [跳至上一章](./A1_WhatIsSpark.md)
 
+## Standalone模式
 ```
 1）上传并解压spark安装包
 [hadoop@hadoop102 sorfware]$ tar -zxvf spark-2.1.1-bin-hadoop2.7.tgz -C /opt/module/
@@ -76,7 +77,7 @@ application-arguments: 传给main()方法的参数
 
 该算法是利用蒙特•卡罗算法求PI
 ```
-![PI](images/Spark-run-PI.jpg)
+![PI](./images/Spark-run-PI.jpg)
 
 ```
 
@@ -174,7 +175,7 @@ spark.history.retainedApplications=3   指定保存Application历史记录的个
 7）查看历史服务
 hadoop102:4000
 ```
-![Run-job](images/Spark-run-job.jpg)
+![Run-job](./images/Spark-run-job.jpg)
 
 
 
